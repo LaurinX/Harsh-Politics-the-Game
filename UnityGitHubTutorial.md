@@ -8,7 +8,7 @@
   Logge dich ein in GitHub auf GitDesktop
 
 3. Schritt: 
-  [Siehe Anleitung zum Runterladen und Öffnen des GitHub Projektes](# Anleitung-zum-Runterladen-und-Öffnen-des-GitHub-Projektes)
+  [Siehe Anleitung zum Runterladen und Öffnen des GitHub Projektes](#Anleitung-zum-Runterladen-und-Öffnen-des-GitHub-Projektes)
 
 
 
