@@ -50,5 +50,5 @@ Mögliche Probleme
 
 ## Quellen
 
-[Tutorial 1](https://unityatscale.com/unity-version-control-guide/how-to-setup-unity-project-on-github/)
-[Tutorial 2](https://thoughtbot.com/blog/how-to-git-with-unity)
+- [Tutorial 1](https://unityatscale.com/unity-version-control-guide/how-to-setup-unity-project-on-github/)
+- [Tutorial 2](https://thoughtbot.com/blog/how-to-git-with-unity)
