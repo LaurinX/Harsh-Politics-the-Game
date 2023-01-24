@@ -25,6 +25,23 @@
 
 4. Schritt:
   PUUUUUUSH
+
+## Anleitung zum Runterladen und Öffnen des GitHub Projektes
+
+1. Schritt:
+  Öffne GitHub Desktop
+
+2. Schritt:
+  Git Clone das Projekt mit dem entsprechenden Branch
+
+3. Schritt:
+  Öffne Unity Hub
+
+4. Schritt:
+  Öffne den Ordner über das "Open" Button und wähle Open from disk
+
+5. Schritt:
+  WOOOOOORK
   
 
 # Anmerkungen
