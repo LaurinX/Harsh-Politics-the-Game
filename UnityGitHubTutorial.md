@@ -8,7 +8,7 @@
   Logge dich ein in GitHub auf GitDesktop
 
 3. Schritt: 
-  Lade das Repo runter
+  Siehe Anleitung zum Runterladen und Öffnen des GitHub Projektes
 
 
 
