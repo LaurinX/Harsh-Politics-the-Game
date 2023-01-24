@@ -47,3 +47,8 @@
 # Anmerkungen
 Mögliche Probleme
 [Problem 1: Pushing never ends](https://github.com/desktop/desktop/issues/14331#issuecomment-1308575748)
+
+## Quellen
+
+[Tutorial 1](https://unityatscale.com/unity-version-control-guide/how-to-setup-unity-project-on-github/)
+[Tutorial 2](https://thoughtbot.com/blog/how-to-git-with-unity)
