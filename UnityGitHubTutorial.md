@@ -46,7 +46,7 @@
 
 # Anmerkungen
 Mögliche Probleme
-[Problem 1: Pushing never ends](https://github.com/desktop/desktop/issues/14331#issuecomment-1308575748)
+- [Problem 1: Pushing never ends](https://github.com/desktop/desktop/issues/14331#issuecomment-1308575748)
 
 ## Quellen
 
