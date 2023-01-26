@@ -1,4 +1,4 @@
-### Rahmnenbedingungen bis zum Grundgerüst
+# Rahmnenbedingungen bis zum Grundgerüst
 Phase 1:
 - Dummies mit Bewegung
 - langer, schmaler Background
