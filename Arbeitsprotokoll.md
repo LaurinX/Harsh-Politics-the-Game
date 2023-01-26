@@ -14,3 +14,19 @@ Phase 2:
 Phase 3:
 - Grafische Oberfläche anpassen (Menü, Buttons etc.)
 - Projektile (Straight Line oder Bullet Drop)
+
+26.01.2023
+
+GitHub Repo für Unity
+Tutorial / Beispielprojekte
+Pixelarts erstellt
+Basisfaktoren / Funktionale und nicht-funktionale Anforderungen
+
+Aufgaben für Heute:
+
+Weitere Tutorials Beispielprojekte
+
+Sequenz-Diagramm erstellen / Objekt-Diagramm
+
+Mit GitHub vertraut machen
+
