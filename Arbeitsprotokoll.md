@@ -28,5 +28,5 @@ Weitere Tutorials Beispielprojekte
 
 Sequenz-Diagramm erstellen / Objekt-Diagramm
 
-Mit GitHub vertraut machen
+Mit GitHub und Unity vertraut machen
 
