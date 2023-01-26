@@ -9,7 +9,7 @@ Phase 2:
 - Hitbox-Detection 
 - Sprites, Skins
 - Layout verbessern
-- mit den F‰higkeiten anfangen (Animationen, Cooldowns)
+- mit den Fähigkeiten anfangen (Animationen, Cooldowns)
 
 Phase 3:
 - Grafische Oberfläche anpassen (Menü, Buttons etc.)
