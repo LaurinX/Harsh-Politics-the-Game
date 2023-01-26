@@ -12,5 +12,5 @@ Phase 2:
 - mit den F‰higkeiten anfangen (Animationen, Cooldowns)
 
 Phase 3:
-- Grafische Oberfl‰che anpassen (Men¸, Buttons etc.)
+- Grafische Oberfläche anpassen (Menü, Buttons etc.)
 - Projektile (Straight Line oder Bullet Drop)
