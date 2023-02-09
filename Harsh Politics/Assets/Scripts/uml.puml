@@ -1,0 +1,145 @@
+﻿@startuml
+
+package "GameObjects and Scene"  { 
+    class GameObject {
+        +activeInHierarchy: Boolean
+        +tag: String
+        +layer: int
+        +transform: Component
+        +... : ...
+        +Component AddComponent(String className)
+        +Component GetComponentInChildren(Type type)
+        +...()
+    }
+    class MainCamera {
+        +camera: Component
+        +audio listener: Component
+    }
+    class Player1 {
+         +sprite renderer: Component
+         +rigidbody2D: Component
+         +box collider2D: Component
+         +player controller: Script
+    }
+    class GroundCheck {
+         
+    }   
+    class Ground {
+         +sprite renderer: Component
+         +box collider2D: Component
+    } 
+    note top of Weapon1  : Not Implemented yet!    
+    class Weapon1{
+    }
+    
+    note left of GameObject::..
+        Lots more for high flexibility 
+    end note
+     
+    GameObject <|-- MainCamera
+    GameObject <|-- Weapon1
+    GameObject <|-- Player1
+    GameObject <|-- GroundCheck
+    GameObject <|-- Ground
+    GroundCheck - Player1 : is Child of >
+}
+
+package "Components"{
+    class Component  << (C,#FF7700) >>{
+        +gameObject: GameObject
+        +tag: String
+        +transform: Component
+        +...()
+    }  
+    note left of Component::tag
+        from gameObject    
+    end note
+    
+    class Transform << (C,#FF7700) >> {
+        +position: X: float, Y: float, Z: float
+        +rotation: X: float, Y: float, Z: float
+        +Scale: X: float, Y: float, Z: float
+        +... : ...
+        +...()
+    }
+    class Sprite_Renderer << (C,#FF7700)  >> {
+        +sprite_path: String
+        +... : ...
+        +...()
+    }
+    class Box_Collider_2D << (C,#FF7700)  >> {
+        +size: Width: float, Height: float
+        +... : ...
+        +...() 
+    }
+    class Rigidbody_2D << (C,#FF7700) Physics >> {
+        +mass: float
+        +gravity scale: float
+        +... : ...
+        +...() 
+    }
+    class Camera << (C,#FF7700)  >> {
+        +viewPort Rect: X,Y,W,H : int
+            +... : ...
+            +...() 
+    }
+    class Audio_Listener << (C,#FF7700)  >> {
+        +audio: AudioFile
+    }
+    class Behaviour  <<(S, GREEN) >> #orange-green  {
+                +enabled: Boolean
+                +... : ...
+                +...()
+            }
+    
+    package "Script" {
+        
+        class MonoBehaviour <<(S, GREEN) >>  {
+            +... : ...        
+            -Start()
+            -Update()
+            -...()
+        }
+        note right of MonoBehaviour::Update()
+            Called by Unity Engine for every Frame
+        end note
+        class PlayerController <<(S, GREEN) >> {
+            +moveSpeed: float
+            +jumpForce: float
+            +Left: KeyCode
+            +Right: KeyCode
+            +Jump: KeyCode
+            +Attack: KeyCode
+            +groundCheckPoint: Transform
+            +groundCheckRadius: float
+            +whatIsGround: LayerMask
+            +isGrounded: Boolean
+            +isHit: Boolean
+            +hasWeapon: int
+            +life: int
+            -rigidbody2D: Component
+        }
+        note right of PlayerController::isHit
+            Not Implemented yet!
+        end note
+        
+        MonoBehaviour <|-- PlayerController
+    }
+    GroundCheck --> PlayerController::groundCheckPoint #blue;line.dashed;text:blue : Inherited Transform linked to
+    Component <|-- Behaviour
+    Component <|-- Transform
+    Component <|-- Sprite_Renderer
+    Component <|-- Rigidbody_2D
+    Behaviour <|-- Audio_Listener
+    Behaviour <|-- Box_Collider_2D
+    Behaviour <|-- Camera
+    Behaviour <|-- MonoBehaviour
+}
+class Object {
+    +name: String
+    +... : ...
+    +...()
+}
+Object <|-- GameObject
+Object <|-- Component
+@enduml
