@@ -23,4 +23,5 @@ bewertung:
     
   UML Diagramm
   	so darstellen wie wir glauben/geplant haben dass sie am ende aussehen wird.
+    componenten innerhalb einzelner gameobjects können unter dem entsprechenden namen "abgekürzt" werden, müssen aber in der Beschreibung als art legende erklärt werden.
   
