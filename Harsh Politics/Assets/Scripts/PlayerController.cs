@@ -18,6 +18,10 @@ public class PlayerController : MonoBehaviour
     public LayerMask whatIsGround;
 
     public bool isGrounded;
+    public GameObject Bullet;
+    public Transform throwPoint;
+    public int bulletCooldownBase;
+    public int bulletCooldown = 0;
    
     // Start is called before the first frame update
     void Start()
@@ -28,6 +32,11 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (bulletCooldown> 0)
+        {
+            bulletCooldown--;
+        }
+
         isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, groundCheckRadius, whatIsGround);
        
         if (Input.GetKey(left)) 
@@ -44,6 +53,13 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(jump)&& isGrounded )
         {
             theRB.velocity = new Vector2(theRB.velocity.x, jumpForce);
+        }
+
+        if (Input.GetKey(throwBall)&& bulletCooldown == 0)
+        {
+            GameObject bulletClone =  (GameObject)Instantiate(Bullet, throwPoint.position, throwPoint.rotation);
+            bulletClone.transform.localScale = transform.localScale;
+            bulletCooldown = bulletCooldownBase;
         }
     }
 }
