@@ -18,6 +18,10 @@ public class PlayerController : MonoBehaviour
     public LayerMask whatIsGround;
 
     public bool isGrounded;
+    public GameObject Bullet;
+    public Transform throwPoint;
+    public int bulletCooldownBase;
+    public int bulletCooldown = 0;
 
     private Animator anim;
    
@@ -32,6 +36,11 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (bulletCooldown > 0)
+        {
+            bulletCooldown--;
+        }
+
         isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, groundCheckRadius, whatIsGround);
        
         if (Input.GetKey(left)) 
@@ -49,7 +58,15 @@ public class PlayerController : MonoBehaviour
         {
             theRB.velocity = new Vector2(theRB.velocity.x, jumpForce);
         }
-        if(theRB.velocity.x < 0)
+
+        if (Input.GetKey(throwBall) && bulletCooldown == 0)
+        {
+            GameObject bulletClone = (GameObject)Instantiate(Bullet, throwPoint.position, throwPoint.rotation);
+            bulletClone.transform.localScale = transform.localScale;
+            bulletCooldown = bulletCooldownBase;
+        }
+
+        if (theRB.velocity.x < 0)
         {
             transform.localScale = new Vector3(-1,1,1);
         } else if ( theRB.velocity.x > 0)
