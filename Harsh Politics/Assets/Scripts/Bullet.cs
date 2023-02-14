@@ -22,7 +22,7 @@ public class Bullet : MonoBehaviour
         {
             bulletDestroy();
         }
-        theRB.velocity = new(bulletSpeed * -transform.localScale.x, 0);
+        theRB.velocity = new(bulletSpeed * transform.localScale.x, 0);
     }
     void bulletDestroy()
     {
