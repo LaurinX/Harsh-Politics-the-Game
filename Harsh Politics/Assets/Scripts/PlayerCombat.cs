@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
@@ -13,7 +12,8 @@ public class PlayerCombat : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(throwball))
+        //activates animation when pressed Key and Current Weapon Animation is Idle
+        if (Input.GetKey(throwball) && playerAnim.GetCurrentAnimatorStateInfo(0).IsName("Idle Weapon"))
         {
             playerAnim.SetTrigger("Slash");
         }
