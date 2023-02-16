@@ -22,7 +22,8 @@ public class Weapon : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag=="Player" && 
-            weaponAnimation.GetCurrentAnimatorStateInfo(0).IsName("Slash"))
+            weaponAnimation.GetCurrentAnimatorStateInfo(0).IsName("Slash") &&
+            !hit)
         {
             collision.gameObject.GetComponent<Health>().TakeDamage(damage);
             hit = true;
