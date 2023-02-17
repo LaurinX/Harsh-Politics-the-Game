@@ -1,7 +1,7 @@
 ﻿@startuml
 
-package "GameObjects and Scene"  { 
-    class GameObject {
+package "Scene"  { 
+    class GameObject << (G,white) >> {
         +activeInHierarchy: Boolean
         +tag: String
         +layer: int
@@ -11,25 +11,25 @@ package "GameObjects and Scene"  {
         +Component GetComponentInChildren(Type type)
         +...()
     }
-    class MainCamera {
+    class MainCamera << (G,white) >>  {
         +camera: Component
         +audio listener: Component
     }
-    class Player1 {
+    class Player1 << (G,white) >>  {
          +sprite renderer: Component
          +rigidbody2D: Component
          +box collider2D: Component
          +player controller: Script
     }
-    class GroundCheck {
+    class GroundCheck << (G,white) >>  {
          
     }   
-    class Ground {
+    class Ground << (G,white) >>  {
          +sprite renderer: Component
          +box collider2D: Component
     } 
     note top of Weapon1  : Not Implemented yet!    
-    class Weapon1{
+    class Weapon1 << (G,white) >> {
     }
     
     note left of GameObject::..
@@ -44,7 +44,7 @@ package "GameObjects and Scene"  {
     GroundCheck - Player1 : is Child of >
 }
 
-package "Components"{
+package "Inspector"{
     class Component  << (C,#FF7700) >>{
         +gameObject: GameObject
         +tag: String
@@ -92,7 +92,7 @@ package "Components"{
                 +...()
             }
     
-    package "Script" {
+    package "Scripts" {
         
         class MonoBehaviour <<(S, GREEN) >>  {
             +... : ...        
@@ -125,7 +125,6 @@ package "Components"{
         
         MonoBehaviour <|-- PlayerController
     }
-    GroundCheck --> PlayerController::groundCheckPoint #blue;line.dashed;text:blue : Inherited Transform linked to
     Component <|-- Behaviour
     Component <|-- Transform
     Component <|-- Sprite_Renderer
@@ -135,10 +134,16 @@ package "Components"{
     Behaviour <|-- Camera
     Behaviour <|-- MonoBehaviour
 }
-class Object {
+class Object << (O,red) >>  {
     +name: String
     +... : ...
     +...()
+}
+class Legende <<(L,pink>>{
++public Attribut
+-private Attribut
++public Operation()
+-private Operation()
 }
 Object <|-- GameObject
 Object <|-- Component
