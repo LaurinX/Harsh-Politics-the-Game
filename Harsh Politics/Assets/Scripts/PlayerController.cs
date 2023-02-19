@@ -1,16 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float moveSpeed;
-    public float jumpForce;
-    public KeyCode left;
-    public KeyCode right;
-    public KeyCode jump;
-    public KeyCode throwBall;
-
+    private PlayerControls _controls;
+    
     private Rigidbody2D theRB;
 
     public Transform groundCheckPoint;
@@ -18,19 +14,26 @@ public class PlayerController : MonoBehaviour
     public LayerMask whatIsGround;
 
     public bool isGrounded;
+    // Bullet stuff should not be in PlayerController.cs
+    //TODO Create own Script for Bullet Stuff
     public GameObject Bullet;
     public Transform throwPoint;
     public int bulletCooldownBase;
     public int bulletCooldown = 0;
 
-    private Animator anim;
+    private Animator _animator;
+    private SpriteRenderer _spriteRenderer;
    
     // Start is called before the first frame update
     void Start()
     {
+        _controls = GetComponentInParent<PlayerControls>();
+        
         theRB = GetComponent<Rigidbody2D>();
 
-        anim = GetComponent<Animator>();
+        _animator = GetComponent<Animator>();
+
+        _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -43,23 +46,25 @@ public class PlayerController : MonoBehaviour
 
         isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, groundCheckRadius, whatIsGround);
        
-        if (Input.GetKey(left)) 
+        if (Input.GetKey(_controls.left)) 
         {
-            theRB.velocity = new Vector2(-moveSpeed, theRB.velocity.y);
-        }else if (Input.GetKey(right))
+            theRB.velocity = new Vector2(-_controls.moveSpeed, theRB.velocity.y);
+            _spriteRenderer.flipX = true;
+        }else if (Input.GetKey(_controls.right))
         {
-            theRB.velocity = new Vector2(moveSpeed, theRB.velocity.y);
+            theRB.velocity = new Vector2(_controls.moveSpeed, theRB.velocity.y);
+            _spriteRenderer.flipX = false;
         } else
         {
             theRB.velocity = new Vector2(0, theRB.velocity.y);
         }
 
-        if (Input.GetKey(jump)&& isGrounded )
+        if (Input.GetKey(_controls.jump)&& isGrounded )
         {
-            theRB.velocity = new Vector2(theRB.velocity.x, jumpForce);
+            theRB.velocity = new Vector2(theRB.velocity.x, _controls.jumpForce);
         }
 
-        if (Input.GetKey(throwBall) && bulletCooldown == 0)
+        if (Input.GetKey(_controls.attack) && bulletCooldown == 0)
         {
             GameObject bulletClone = (GameObject)Instantiate(Bullet, throwPoint.position, throwPoint.rotation);
             bulletClone.transform.localScale = transform.localScale;
@@ -74,7 +79,7 @@ public class PlayerController : MonoBehaviour
             transform.localScale = new Vector3(1, 1, 1);
         }
 
-        anim.SetBool("isGrounded",isGrounded);
+        _animator.SetBool("isGrounded",isGrounded);
       
     }
 }

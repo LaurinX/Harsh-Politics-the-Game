@@ -7,7 +7,10 @@ public class PlayerCombat : MonoBehaviour
 
     private void Start()
     {
-        throwball = FindObjectOfType<PlayerController>().throwBall;
+        //Changed PlayerController and created PlayerControls to make it easier to load different prefabs with same controls
+        //TODO Make use of PlayerControls and its keycodes the right way. Example in PlaserController.cs
+        //throwball = FindObjectOfType<PlayerController>().attack;
+        throwball = KeyCode.U;
     }
 
     private void Update()
