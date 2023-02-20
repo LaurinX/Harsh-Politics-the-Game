@@ -6,14 +6,20 @@ namespace DefaultNamespace
 {
     public class PlayerBody: MonoBehaviour
     {
-        [SerializeField]
         public Health _health;
-        //Armor
-        //Hand - Weapon 
+        
+        public Armor _armor;
+
+        public Hand _hand;
         private void Start()
         {
             _health.SetHealth();
             _health.LifeConsumed += Destroybody;
+        }
+
+        private void OnDestroy()
+        {
+            _health.LifeConsumed -= Destroybody;
         }
 
         private void Update()

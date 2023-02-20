@@ -5,10 +5,10 @@ using UnityEngine;
 namespace PlayerAttachment
 {
     [Serializable]
-    public class Armor
+    public class Hand
     {
         [ReadOnly]
         [SerializeField]
-        private int _protectionLevel;
+        private int _strength;
     }
 }
