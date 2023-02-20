@@ -1,3 +1,5 @@
+using DefaultNamespace;
+using PlayerAttachment;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour
@@ -25,7 +27,7 @@ public class Weapon : MonoBehaviour
             weaponAnimation.GetCurrentAnimatorStateInfo(0).IsName("Slash") &&
             !hit)
         {
-            collision.gameObject.GetComponent<Health>().TakeDamage(damage);
+            // collision.gameObject.GetComponent<PlayerBody>().TakeDamage(damage);
             hit = true;
         }
     }
@@ -38,7 +40,7 @@ public class Weapon : MonoBehaviour
             !hit
             )
         {
-            collision.gameObject.GetComponent<Health>().TakeDamage(damage);
+            // collision.gameObject.GetComponent<PlayerBody>().TakeDamage(damage);
             hit = true;
         }
     }
