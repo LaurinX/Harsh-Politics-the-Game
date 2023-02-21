@@ -1,17 +1,13 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 using Random = System.Random;
 
-namespace DefaultNamespace
-{
     public class WeaponGenerator : MonoBehaviour
     {
+        [SerializeField]
+        private int generateNewInSec;
 
-        private int currentWeapon;
+        private int _currentWeapon;
         
         private void Start()
         {
@@ -19,15 +15,15 @@ namespace DefaultNamespace
             {
                 child.gameObject.SetActive(false);
             }
-            StartCoroutine(GenerateNewWeapon(5));
+            StartCoroutine(GenerateNewWeapon(generateNewInSec));
         }
 
         private int SelectNewWeapon()
         {
-            currentWeapon = new Random().Next(0, transform.childCount - 1);
-            return currentWeapon;
+            _currentWeapon = new Random().Next(0, transform.childCount - 1);
+            return _currentWeapon;
         }
-        
+        // TODO: need Refactoring
         private IEnumerator GenerateNewWeapon(int seconds)
         {
             while (true)
@@ -48,10 +44,9 @@ namespace DefaultNamespace
         private void DestroyWeapon()
         {
             //Deactivates current weapon
-            transform.GetChild(currentWeapon).gameObject.SetActive(false);
+            transform.GetChild(_currentWeapon).gameObject.SetActive(false);
             //Reset Position of Child relative to Parent
             // TODO : change location randomly relative to parent
-            transform.GetChild(currentWeapon).localPosition = Vector3.zero;
+            transform.GetChild(_currentWeapon).localPosition = Vector3.zero;
         }
     }
-}
