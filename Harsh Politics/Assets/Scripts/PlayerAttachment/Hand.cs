@@ -1,24 +1,20 @@
 using System;
-using DefaultNamespace.InspectorSettings;
 using UnityEngine;
 
 namespace PlayerAttachment
 {
+    public enum Weapon { Dagger, Knife, Axe, Hand, Shield }
     [Serializable]
     public class Hand
     {
         //holding weapon objects as prefab list
-        
-        [ReadOnly]
         [SerializeField]
-        private int _strength;
-        
-        public GameObject _equipment;
-        
-        public Hand()
+        private GameObject _equipment;
+
+        private void SelectWeapon()
         {
+            
         }
 
-        //type of equipment, selectable field (gameobject)
     }
 }

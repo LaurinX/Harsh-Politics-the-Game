@@ -16,10 +16,9 @@ namespace DefaultNamespace
         private void Start()
         {
             _health.SetHealth();
-            _hand = new Hand();
             _health.LifeConsumed += Destroybody;
-            var test = gameObject.transform.GetChild(0);
-            test.gameObject.SetActive(false);
+            // var test = gameObject.transform.GetChild(0);
+            // test.gameObject.SetActive(false);
         }
         
 
