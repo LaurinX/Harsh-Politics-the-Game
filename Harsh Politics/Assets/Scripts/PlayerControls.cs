@@ -11,6 +11,8 @@ public class PlayerControls : MonoBehaviour
     public KeyCode right;
     public KeyCode jump;
     public KeyCode attack;
+    
+    public LayerMask whatIsGround;
     // Start is called before the first frame update
     void Start()
     {

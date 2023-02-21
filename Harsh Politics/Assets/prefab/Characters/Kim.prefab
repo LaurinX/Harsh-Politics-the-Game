@@ -42,8 +42,6 @@ GameObject:
   - component: {fileID: 6211350008142452877}
   - component: {fileID: 6211350008142452876}
   - component: {fileID: 6211350008142452879}
-  - component: {fileID: 6211350008142452878}
-  - component: {fileID: 6211350008142452873}
   - component: {fileID: 589867777}
   m_Layer: 6
   m_Name: Kim
@@ -81,17 +79,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b234f4278d88194591bed1cfa6e8b80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 7
-  jumpForce: 25
-  left: 97
-  right: 100
-  jump: 119
-  throwBall: 32
   groundCheckPoint: {fileID: 6211350008454152760}
   groundCheckRadius: 0.3
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 1
   isGrounded: 1
   Bullet: {fileID: 1872186309814137976, guid: fbd6e3c2e7ef3454488befe1210e6543, type: 3}
   throwPoint: {fileID: 6211350007475694240}
@@ -149,53 +138,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!50 &6211350008142452878
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6211350008142452872}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 10
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
---- !u!61 &6211350008142452873
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6211350008142452872}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.01624918, y: 0.00581187}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 2}
-    newSize: {x: 2, y: 2}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 1
-  serializedVersion: 2
-  m_Size: {x: 1.7354221, y: 1.7309927}
-  m_EdgeRadius: 0
 --- !u!95 &589867777
 Animator:
   serializedVersion: 5
