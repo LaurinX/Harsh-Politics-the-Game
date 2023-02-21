@@ -10,5 +10,7 @@ namespace PlayerAttachment
         [ReadOnly]
         [SerializeField]
         private int _protectionLevel;
+        
+        //is equipped and selectable only
     }
 }
