@@ -1,8 +1,6 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using Unity.VisualScripting;
+using UnityEditor.UIElements;
 using UnityEngine;
 
 namespace PlayerAttachment
@@ -10,6 +8,10 @@ namespace PlayerAttachment
     public class Hand : MonoBehaviour
     {
         private PlayerControls _controls;
+
+        private bool rightKey;
+
+        private bool leftKey;
 
         private void Start()
         {
@@ -27,12 +29,29 @@ namespace PlayerAttachment
                 child.gameObject.SetActive(false);
             }
         }
+
         private void Update()
         {
             if (Input.GetKey(_controls.drop))
             {
                 DropWeapon();
             }
+            if (Input.GetKey(_controls.right) &&
+                !rightKey)
+            {
+                transform.RotateAround(transform.parent.position, Vector3.down, 180f);
+                rightKey = true;
+                leftKey = false;
+            }
+            if(Input.GetKey(_controls.left) &&
+               !leftKey)
+            {
+                transform.RotateAround(transform.parent.position, Vector3.up, 180f);
+                rightKey = false;
+                leftKey = true;
+            }
+            
+
         }
 
         private void ChangeWeapon(Collider2D col)
@@ -46,20 +65,6 @@ namespace PlayerAttachment
                 col.transform.parent.gameObject.GetComponent<WeaponGenerator>().PickedUpWeapon(test);
             }  
         }
-
-        // private void OnTriggerEnter2D(Collider2D col)
-        // {
-        //     try
-        //     {
-        //         if (col.transform.parent.name == "WeaponGenerator")
-        //         {
-        //             ChangeWeapon(col);
-        //         }
-        //     }
-        //     catch (Exception e)
-        //     {
-        //     }
-        // }
 
         private void OnTriggerStay2D(Collider2D col)
         {
