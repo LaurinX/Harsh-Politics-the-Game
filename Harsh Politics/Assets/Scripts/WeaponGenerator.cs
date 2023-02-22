@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using Random = System.Random;
@@ -5,6 +6,7 @@ using Random = System.Random;
     public class WeaponGenerator : MonoBehaviour
     {
         [SerializeField]
+        [Range(5,20)]
         private int generateNewInSec;
 
         private int _currentWeapon;
@@ -49,4 +51,5 @@ using Random = System.Random;
             // TODO : change location randomly relative to parent
             transform.GetChild(_currentWeapon).localPosition = Vector3.zero;
         }
+
     }

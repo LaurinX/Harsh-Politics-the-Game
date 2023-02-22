@@ -1,5 +1,4 @@
 using System;
-using DefaultNamespace.PickUpSystem;
 using PlayerAttachment;
 using UnityEngine;
 
@@ -10,15 +9,12 @@ namespace DefaultNamespace
         public Health _health;
         
         public Armor _armor;
-
-        public Hand _hand;
-
+        
+        
         private void Start()
         {
             _health.SetHealth();
             _health.LifeConsumed += Destroybody;
-            // var test = gameObject.transform.GetChild(0);
-            // test.gameObject.SetActive(false);
         }
         
 
@@ -27,13 +23,10 @@ namespace DefaultNamespace
             _health.LifeConsumed -= Destroybody;
         }
 
-        private void Update()
-        {
-        }
-
         void Destroybody(object sender, EventArgs e)
         {
             Destroy(gameObject);
         }
+       
     }
 }
