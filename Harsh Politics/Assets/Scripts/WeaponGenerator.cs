@@ -20,6 +20,11 @@ using Random = System.Random;
             StartCoroutine(GenerateNewWeapon(generateNewInSec));
         }
 
+        public void PickedUpWeapon(string name)
+        {
+            transform.Find(name).gameObject.SetActive(false);
+        }
+
         private int SelectNewWeapon()
         {
             _currentWeapon = new Random().Next(0, transform.childCount - 1);

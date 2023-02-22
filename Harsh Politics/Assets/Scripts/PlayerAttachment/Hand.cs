@@ -17,7 +17,7 @@ namespace PlayerAttachment
 
             DeactivateAllWeapons();
             
-            transform.Find("Hand").gameObject.SetActive(true);
+            transform.GetComponentInChildren<Transform>().Find("Hand").gameObject.SetActive(true);
         }
 
         private void DeactivateAllWeapons()
@@ -27,7 +27,6 @@ namespace PlayerAttachment
                 child.gameObject.SetActive(false);
             }
         }
-        
         private void Update()
         {
             if (Input.GetKey(_controls.drop))
@@ -44,23 +43,42 @@ namespace PlayerAttachment
                 var test = col.transform.name;
                 Transform tmp = transform.Find(test);
                 tmp.gameObject.SetActive(true);
+                col.transform.parent.gameObject.GetComponent<WeaponGenerator>().PickedUpWeapon(test);
             }  
         }
 
-        private void OnTriggerEnter2D(Collider2D col)
-        {
-            ChangeWeapon(col);
-        }
+        // private void OnTriggerEnter2D(Collider2D col)
+        // {
+        //     try
+        //     {
+        //         if (col.transform.parent.name == "WeaponGenerator")
+        //         {
+        //             ChangeWeapon(col);
+        //         }
+        //     }
+        //     catch (Exception e)
+        //     {
+        //     }
+        // }
 
         private void OnTriggerStay2D(Collider2D col)
         {
-            ChangeWeapon(col);
+            try
+            {
+                if (col.transform.parent.name == "WeaponGenerator")
+                {
+                    ChangeWeapon(col);
+                }
+            }
+            catch (Exception e)
+            {
+            }
         }
 
         private void DropWeapon()
         {
             DeactivateAllWeapons();
-            transform.Find("Hand").gameObject.SetActive(true);
+            transform.GetComponentInChildren<Transform>().Find("Hand").gameObject.SetActive(true);
         }
     }
 }
