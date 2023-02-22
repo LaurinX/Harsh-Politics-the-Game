@@ -15,6 +15,9 @@ using Random = System.Random;
         {
             foreach (Transform child in transform)
             {
+                child.gameObject.GetComponent<Animator>().keepAnimatorStateOnDisable = true;
+                child.gameObject.GetComponent<Collider2D>().isTrigger = false;
+                child.gameObject.AddComponent<Rigidbody2D>();
                 child.gameObject.SetActive(false);
             }
             StartCoroutine(GenerateNewWeapon(generateNewInSec));
@@ -27,7 +30,7 @@ using Random = System.Random;
 
         private int SelectNewWeapon()
         {
-            _currentWeapon = new Random().Next(0, transform.childCount - 1);
+            _currentWeapon = new Random().Next(0, transform.childCount);
             return _currentWeapon;
         }
         // TODO: need Refactoring

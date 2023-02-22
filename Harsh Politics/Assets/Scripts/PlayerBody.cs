@@ -10,10 +10,13 @@ namespace DefaultNamespace
         
         public Armor _armor;
 
+        private PlayerCombat _combat;
+
         
         
         private void Start()
         {
+            _combat = GetComponent<PlayerCombat>();
             _health.SetHealth();
             _health.LifeConsumed += Destroybody;
         }

@@ -18,11 +18,24 @@ namespace PlayerAttachment
             _controls = transform.parent.parent.GetComponent<PlayerControls>();
 
             DeactivateAllWeapons();
-            
+
             transform.GetComponentInChildren<Transform>().Find("Hand").gameObject.SetActive(true);
+
+            //because it's already facing right in the beginning
+            SetKey();
+
         }
 
-        private void DeactivateAllWeapons()
+        public void SetKey()
+        {
+            rightKey = true;
+        }
+
+        private void AddAnimationFromAsset()
+        {
+        }
+
+    private void DeactivateAllWeapons()
         {
             foreach (Transform child in transform)
             {
@@ -36,17 +49,18 @@ namespace PlayerAttachment
             {
                 DropWeapon();
             }
+            //TODO:refactor -> KeyControls and Weapon Drop/PickUp has to be in different classes
             if (Input.GetKey(_controls.right) &&
                 !rightKey)
             {
-                transform.RotateAround(transform.parent.position, Vector3.down, 180f);
+                transform.RotateAround(transform.parent.position, Vector3.up, 180f);
                 rightKey = true;
                 leftKey = false;
             }
             if(Input.GetKey(_controls.left) &&
                !leftKey)
             {
-                transform.RotateAround(transform.parent.position, Vector3.up, 180f);
+                transform.RotateAround(transform.parent.position, Vector3.down, 180f);
                 rightKey = false;
                 leftKey = true;
             }
