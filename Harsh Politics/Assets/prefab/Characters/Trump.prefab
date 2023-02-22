@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 6211350008142452879}
   - component: {fileID: 589867777}
   m_Layer: 6
-  m_Name: Macron
+  m_Name: Trump
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -127,7 +127,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1a381debd8ea9144f8bbf89eda8ca08f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bfc22b0248bf6184693e86bcff60e5f3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
