@@ -32,6 +32,7 @@ namespace GameLogic
             
             if (Input.GetKey(_controls.attack))
             {
+                Debug.LogError("Press F");
                 if (isTouching)
                 {
                     Attack(_enemy);
@@ -53,29 +54,34 @@ namespace GameLogic
         
         //Because This is the physics engine and it reacts more slowly than Update, which is per frame
 
-        private void OnCollisionEnter2D(Collision2D collision)
+        private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.transform.gameObject.tag == "Player")
             {
+                collision.transform.GetComponent<Rigidbody2D>().sleepMode = RigidbodySleepMode2D.NeverSleep;
                 _enemy = collision.transform;
                 isTouching = true;       
             }
         }
 
-        private void OnCollisionStay2D(Collision2D collision)
+        private void OnTriggerStay2D(Collider2D collision)
         {
+            Debug.LogError("notPlayer");
             if (collision.transform.gameObject.tag == "Player")
             {
                 _enemy = collision.transform;
-                isTouching = true;       
-            }     
+                isTouching = true;
+                Debug.LogError("Stay");
+            }
+
         }
 
-        private void OnCollisionExit2D(Collision2D collision)
+        private void OnTriggerExit2D(Collider2D collision)
         {
             if (collision.transform.gameObject.tag == "Player")
             {
-                _enemy = collision.transform;
+                collision.transform.GetComponent<Rigidbody2D>().sleepMode = RigidbodySleepMode2D.StartAwake;
+                _enemy = null;
                 isTouching = false;       
             }       
         }
