@@ -1,5 +1,5 @@
-using System;
-using System.Collections;
+using Entity;
+using GameLogic;
 using UnityEngine;
 
 namespace PlayerAttachment
@@ -7,32 +7,30 @@ namespace PlayerAttachment
     public class Hand : MonoBehaviour
     {
         private PlayerControls _controls;
-
-        private bool _rightKey;
-
-        private bool _leftKey;
-
+        
         private bool _fistActive;
 
         private Transform _currentWeapon;
         
-        private float holdTime = 0; 
+        private float holdTime = 0;
 
+        private Combat _playerCombat;
+        
         private void Start()
         {
             CreateDefaultWeapon();
             
             _controls = transform.parent.GetComponent<PlayerControls>();
-            
+
             _fistActive = true;
-
-            //because it's already facing right in the beginning
-            _rightKey = true;
-
         }
 
         private void Update()
         {
+            if (Input.GetKey(_controls.attack))
+            {
+                
+            }
             //Holding interaction key for 3 seconds causes a drop of the current weapon
             if (Input.GetKey(_controls.interaction))
             {
@@ -49,25 +47,9 @@ namespace PlayerAttachment
             {
                 holdTime = 0;
             }
-            
-            //TODO:refactor -> KeyControls and Weapon Drop/PickUp has to be in different classes
-            if (Input.GetKey(_controls.right) &&
-                !_rightKey)
-            {
-                transform.RotateAround(transform.parent.position, Vector3.up, 180f);
-                _rightKey = true;
-                _leftKey = false;
-            }
-            if(Input.GetKey(_controls.left) &&
-               !_leftKey)
-            {
-                transform.RotateAround(transform.parent.position, Vector3.down, 180f);
-                _rightKey = false;
-                _leftKey = true;
-            }
         }
         
-        private void ChangeWeapon_new(Transform weapon)
+        private void ChangeWeapon(Transform weapon)
         {
             if (_currentWeapon != null)
             {
@@ -76,8 +58,10 @@ namespace PlayerAttachment
             Destroy(weapon.GetComponent<Rigidbody2D>());
             weapon.GetComponent<Weapon>().SetMaster(true);
             weapon.SetParent(transform, false);
+            weapon.gameObject.GetComponent<Collider2D>().isTrigger = true;
             weapon.localPosition = Vector3.zero;
             _currentWeapon = weapon;
+            weapon.gameObject.AddComponent<Combat>();
             SetDefaultWeapon(false);
         }
 
@@ -86,7 +70,7 @@ namespace PlayerAttachment
             if (Input.GetKey(_controls.interaction) &&
                 col.gameObject.tag == "Weapon")
             {
-                ChangeWeapon_new(col.transform);
+                ChangeWeapon(col.transform);
             }
         }
 
@@ -95,6 +79,7 @@ namespace PlayerAttachment
             weapon.gameObject.AddComponent<Rigidbody2D>();
             weapon.gameObject.GetComponent<Collider2D>().isTrigger = false;
             weapon.gameObject.GetComponent<Weapon>().SetMaster(false);
+            Destroy(weapon.gameObject.GetComponent<Combat>());
             weapon.parent = null;
             SetDefaultWeapon(true);
         }

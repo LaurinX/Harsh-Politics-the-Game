@@ -1,15 +1,15 @@
 using DefaultNamespace.InspectorSettings;
 using UnityEngine;
 
-namespace PlayerAttachment
+namespace Entity
 {
     public class Weapon : MonoBehaviour
     {
         [SerializeField]
         private int damage;
+        [SerializeField]
+        private int attackSpeed;
         
-        private bool hit;
-
         [ReadOnly]
         private bool hasMaster = false;
 
@@ -20,6 +20,17 @@ namespace PlayerAttachment
         private void Start()
         {
         }
+
+        public int GetDamageValue()
+        {
+            return damage;
+        }
+
+        public int GetAttackSpeed()
+        {
+            return attackSpeed;
+        }
+        
 
         public void SetMaster(bool master)
         {
