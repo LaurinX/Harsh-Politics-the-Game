@@ -10,17 +10,22 @@ namespace DefaultNamespace
         
         public Armor _armor;
 
+        private Hand _hand;
+
         private PlayerCombat _combat;
 
         
         
         private void Start()
         {
+            //Creates a hand from prefab and attach it to player as child
+            var hand = Instantiate(Resources.Load("Default/A_Hand") as GameObject, transform);
+            hand.name = "Hand";
             _combat = GetComponent<PlayerCombat>();
             _health.SetHealth();
             _health.LifeConsumed += Destroybody;
         }
-        
+
 
         private void OnDestroy()
         {

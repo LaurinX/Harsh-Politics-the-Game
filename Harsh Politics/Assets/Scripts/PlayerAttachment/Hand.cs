@@ -1,6 +1,5 @@
 using System;
-using Unity.VisualScripting;
-using UnityEditor.UIElements;
+using System.Collections;
 using UnityEngine;
 
 namespace PlayerAttachment
@@ -9,95 +8,110 @@ namespace PlayerAttachment
     {
         private PlayerControls _controls;
 
-        private bool rightKey;
+        private bool _rightKey;
 
-        private bool leftKey;
+        private bool _leftKey;
+
+        private bool _fistActive;
+
+        private Transform _currentWeapon;
+        
+        private float holdTime = 0; 
 
         private void Start()
         {
-            _controls = transform.parent.parent.GetComponent<PlayerControls>();
-
-            DeactivateAllWeapons();
-
-            transform.GetComponentInChildren<Transform>().Find("Hand").gameObject.SetActive(true);
+            CreateDefaultWeapon();
+            
+            _controls = transform.parent.GetComponent<PlayerControls>();
+            
+            _fistActive = true;
 
             //because it's already facing right in the beginning
-            SetKey();
+            _rightKey = true;
 
-        }
-
-        public void SetKey()
-        {
-            rightKey = true;
-        }
-
-        private void AddAnimationFromAsset()
-        {
-        }
-
-    private void DeactivateAllWeapons()
-        {
-            foreach (Transform child in transform)
-            {
-                child.gameObject.SetActive(false);
-            }
         }
 
         private void Update()
         {
-            if (Input.GetKey(_controls.drop))
+            //Holding interaction key for 3 seconds causes a drop of the current weapon
+            if (Input.GetKey(_controls.interaction))
             {
-                DropWeapon();
+                //somehow it measures the time in seconds?
+                holdTime += 1*Time.deltaTime;
+                if (holdTime > 2f)
+                {
+                    DropWeapon(_currentWeapon);
+
+                    holdTime = 0;
+                }
             }
-            //TODO:refactor -> KeyControls and Weapon Drop/PickUp has to be in different classes
-            if (Input.GetKey(_controls.right) &&
-                !rightKey)
+            else
             {
-                transform.RotateAround(transform.parent.position, Vector3.up, 180f);
-                rightKey = true;
-                leftKey = false;
-            }
-            if(Input.GetKey(_controls.left) &&
-               !leftKey)
-            {
-                transform.RotateAround(transform.parent.position, Vector3.down, 180f);
-                rightKey = false;
-                leftKey = true;
+                holdTime = 0;
             }
             
-
-        }
-
-        private void ChangeWeapon(Collider2D col)
-        {
-            if (Input.GetKey(_controls.attack))
+            //TODO:refactor -> KeyControls and Weapon Drop/PickUp has to be in different classes
+            if (Input.GetKey(_controls.right) &&
+                !_rightKey)
             {
-                DeactivateAllWeapons();
-                var test = col.transform.name;
-                Transform tmp = transform.Find(test);
-                tmp.gameObject.SetActive(true);
-                col.transform.parent.gameObject.GetComponent<WeaponGenerator>().PickedUpWeapon(test);
-            }  
+                transform.RotateAround(transform.parent.position, Vector3.up, 180f);
+                _rightKey = true;
+                _leftKey = false;
+            }
+            if(Input.GetKey(_controls.left) &&
+               !_leftKey)
+            {
+                transform.RotateAround(transform.parent.position, Vector3.down, 180f);
+                _rightKey = false;
+                _leftKey = true;
+            }
+        }
+        
+        private void ChangeWeapon_new(Transform weapon)
+        {
+            if (_currentWeapon != null)
+            {
+                DropWeapon(_currentWeapon);
+            }
+            Destroy(weapon.GetComponent<Rigidbody2D>());
+            weapon.GetComponent<Weapon>().SetMaster(true);
+            weapon.SetParent(transform, false);
+            weapon.localPosition = Vector3.zero;
+            _currentWeapon = weapon;
+            SetDefaultWeapon(false);
         }
 
         private void OnTriggerStay2D(Collider2D col)
         {
-            try
+            if (Input.GetKey(_controls.interaction) &&
+                col.gameObject.tag == "Weapon")
             {
-                if (col.transform.parent.name == "WeaponGenerator")
-                {
-                    ChangeWeapon(col);
-                }
-            }
-            catch (Exception e)
-            {
+                ChangeWeapon_new(col.transform);
             }
         }
 
-        private void DropWeapon()
+        private void DropWeapon(Transform weapon)
         {
-            DeactivateAllWeapons();
-            transform.GetComponentInChildren<Transform>().Find("Hand").gameObject.SetActive(true);
+            weapon.gameObject.AddComponent<Rigidbody2D>();
+            weapon.gameObject.GetComponent<Collider2D>().isTrigger = false;
+            weapon.gameObject.GetComponent<Weapon>().SetMaster(false);
+            weapon.parent = null;
+            SetDefaultWeapon(true);
+        }
+
+        private void CreateDefaultWeapon()
+        {
+            //Creates a Fist
+            var fist = Instantiate(Resources.Load("Default/Fist") as GameObject, transform);
+            fist.GetComponent<Weapon>().SetMaster(true);
+            //renaming 
+            fist.name = "Fist";
+        }
+
+        private void SetDefaultWeapon(bool modus)
+        {
+            transform.GetChild(0).gameObject.SetActive(modus);
+            _fistActive = modus;
         }
     }
 }

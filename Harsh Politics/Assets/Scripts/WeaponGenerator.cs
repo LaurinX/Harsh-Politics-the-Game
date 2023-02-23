@@ -3,42 +3,35 @@ using System.Collections;
 using UnityEngine;
 using Random = System.Random;
 
+public enum WeaponList
+{
+    Dagger, Sword, Shield
+}
     public class WeaponGenerator : MonoBehaviour
     {
         [SerializeField]
         [Range(5,20)]
         private int generateNewInSec;
 
-        private int _currentWeapon;
+        private Transform _currentWeapon;
         
         private void Start()
         {
-            foreach (Transform child in transform)
-            {
-                child.gameObject.GetComponent<Animator>().keepAnimatorStateOnDisable = true;
-                child.gameObject.GetComponent<Collider2D>().isTrigger = false;
-                child.gameObject.AddComponent<Rigidbody2D>();
-                child.gameObject.SetActive(false);
-            }
             StartCoroutine(GenerateNewWeapon(generateNewInSec));
         }
 
-        public void PickedUpWeapon(string name)
+        //this method is temporary and shall be substituted 
+        private string RandomizeThroughTheList()
         {
-            transform.Find(name).gameObject.SetActive(false);
+            var ranNum = new Random().Next(0, Enum.GetNames(typeof(WeaponList)).Length);
+            return Enum.GetName(typeof(WeaponList), ranNum);
         }
-
-        private int SelectNewWeapon()
-        {
-            _currentWeapon = new Random().Next(0, transform.childCount);
-            return _currentWeapon;
-        }
+        
         // TODO: need Refactoring
         private IEnumerator GenerateNewWeapon(int seconds)
         {
             while (true)
             {
-                DestroyWeapon();
                 CreateWeapon();
                 //waiting for x-amount of seconds
                 yield return new WaitForSeconds(seconds);
@@ -47,17 +40,11 @@ using Random = System.Random;
 
         private void CreateWeapon()
         {
-            //Activates new weapon
-            transform.GetChild(SelectNewWeapon()).gameObject.SetActive(true);
-        }
-
-        private void DestroyWeapon()
-        {
-            //Deactivates current weapon
-            transform.GetChild(_currentWeapon).gameObject.SetActive(false);
-            //Reset Position of Child relative to Parent
-            // TODO : change location randomly relative to parent
-            transform.GetChild(_currentWeapon).localPosition = Vector3.zero;
+            string name = "Weapon/" + RandomizeThroughTheList();
+            var weapon = Instantiate(Resources.Load(name) as GameObject, transform);
+            weapon.GetComponent<Collider2D>().isTrigger = false;
+            weapon.AddComponent<Rigidbody2D>();
+            _currentWeapon = weapon.transform;
         }
 
     }

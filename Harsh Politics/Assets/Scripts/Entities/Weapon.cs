@@ -1,3 +1,4 @@
+using DefaultNamespace.InspectorSettings;
 using UnityEngine;
 
 namespace PlayerAttachment
@@ -9,46 +10,78 @@ namespace PlayerAttachment
         
         private bool hit;
 
-        public Animator weaponAnimation;
+        [ReadOnly]
+        private bool hasMaster = false;
+
+        private float destroytime = 5;
+
+        private float counter = 0;
 
         private void Start()
         {
-            weaponAnimation = GetComponent<Animator>();
         }
 
-        //Checks if the weapon animation is idle, if so attack (hit) is processed by OnTriggerEnter2D and OnTriggerStay2D
+        public void SetMaster(bool master)
+        {
+            hasMaster = master;
+        }
+
         private void Update()
         {
-            if (weaponAnimation.GetCurrentAnimatorStateInfo(0).IsName("Idle Weapon"))
+            if (!hasMaster)
             {
-                hit = false;
+                counter += 1 * Time.deltaTime;
+                if (counter >= destroytime)
+                {
+                    Destroy(gameObject);
+                }
             }
-        }
-    
-        //when sword (box collider) hits the enemy (another collider) and animation is played enemy gets damage
-        private void OnTriggerEnter2D(Collider2D collision)
-        {
-            if (collision.gameObject.tag=="Player" && 
-                weaponAnimation.GetCurrentAnimatorStateInfo(0).IsName("Slash") &&
-                !hit)
+            else
             {
-                // collision.gameObject.GetComponent<PlayerBody>().TakeDamage(damage);
-                hit = true;
+                counter = 0;
             }
         }
 
-        //if weapon stay in touch with enemy, it is checked, if animation is executed and already hit once
-        private void OnTriggerStay2D(Collider2D collision)
-        {
-            if (collision.gameObject.tag=="Player" && 
-                weaponAnimation.GetCurrentAnimatorStateInfo(0).IsName("Slash") &&
-                !hit
-               )
-            {
-                // collision.gameObject.GetComponent<PlayerBody>().TakeDamage(damage);
-                hit = true;
-            }
-        }
 
+        // public Animator weaponAnimation;
+        //
+        // private void Start()
+        // {
+        //     weaponAnimation = GetComponent<Animator>();
+        // }
+        //
+        // //Checks if the weapon animation is idle, if so attack (hit) is processed by OnTriggerEnter2D and OnTriggerStay2D
+        // private void Update()
+        // {
+        //     if (weaponAnimation.GetCurrentAnimatorStateInfo(0).IsName("Idle Weapon"))
+        //     {
+        //         hit = false;
+        //     }
+        // }
+        //
+        // //when sword (box collider) hits the enemy (another collider) and animation is played enemy gets damage
+        // private void OnTriggerEnter2D(Collider2D collision)
+        // {
+        //     if (collision.gameObject.tag=="Player" && 
+        //         weaponAnimation.GetCurrentAnimatorStateInfo(0).IsName("Slash") &&
+        //         !hit)
+        //     {
+        //         // collision.gameObject.GetComponent<PlayerBody>().TakeDamage(damage);
+        //         hit = true;
+        //     }
+        // }
+        //
+        // //if weapon stay in touch with enemy, it is checked, if animation is executed and already hit once
+        // private void OnTriggerStay2D(Collider2D collision)
+        // {
+        //     if (collision.gameObject.tag=="Player" && 
+        //         weaponAnimation.GetCurrentAnimatorStateInfo(0).IsName("Slash") &&
+        //         !hit
+        //        )
+        //     {
+        //         // collision.gameObject.GetComponent<PlayerBody>().TakeDamage(damage);
+        //         hit = true;
+        //     }
+        // }
     }
 }
