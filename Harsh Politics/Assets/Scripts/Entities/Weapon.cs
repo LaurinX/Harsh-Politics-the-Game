@@ -8,7 +8,7 @@ namespace Entity
         [SerializeField]
         private int damage;
         [SerializeField]
-        private int attackSpeed;
+        private float attackSpeed;
         
         [ReadOnly]
         private bool hasMaster = false;
@@ -26,7 +26,7 @@ namespace Entity
             return damage;
         }
 
-        public int GetAttackSpeed()
+        public float GetAttackSpeed()
         {
             return attackSpeed;
         }

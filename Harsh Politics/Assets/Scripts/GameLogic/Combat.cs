@@ -19,7 +19,9 @@ namespace GameLogic
         
         private bool charged = false;
 
-        private int coolDown;
+        private float coolDown;
+
+        private float pauseTime;
         
         private void Start()
         {
@@ -32,11 +34,6 @@ namespace GameLogic
             
             if (Input.GetKey(_controls.attack))
             {
-                Debug.LogError("Press F");
-                if (isTouching)
-                {
-                    Attack(_enemy);
-                }
                 //somehow it measures the time in seconds?
                 holdTime += 1*Time.deltaTime;
                 if (holdTime > 2f)
@@ -44,9 +41,16 @@ namespace GameLogic
                     holdTime = 0;
                 }
 
+                if (pauseTime >= coolDown && isTouching)
+                {
+                    Attack(_enemy);
+                    pauseTime = 0;
+                }
+
             }
             else
             {
+                pauseTime += 1 * Time.deltaTime;
                 charged = false;
                 holdTime = 0;
             }
@@ -66,12 +70,10 @@ namespace GameLogic
 
         private void OnTriggerStay2D(Collider2D collision)
         {
-            Debug.LogError("notPlayer");
             if (collision.transform.gameObject.tag == "Player")
             {
                 _enemy = collision.transform;
                 isTouching = true;
-                Debug.LogError("Stay");
             }
 
         }
