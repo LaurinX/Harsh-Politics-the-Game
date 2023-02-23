@@ -1760,7 +1760,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health:
-    _maxHealth: 20
+    _maxHealth: 2000000
     _health: 0
   _armor:
     _protectionLevel: 0

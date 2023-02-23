@@ -1,5 +1,7 @@
+using System;
 using DefaultNamespace;
 using Entity;
+using Unity.VisualScripting;
 using UnityEngine;
 
 //attached to hand
@@ -9,62 +11,73 @@ namespace GameLogic
     {
         private PlayerControls _controls;
 
-        private float holdTime = -1f;
+        private bool isTouching = false;
+
+        private Transform _enemy;
+
+        private float holdTime = 0;
         
         private bool charged = false;
+
+        private int coolDown;
         
         private void Start()
         {
             _controls = transform.GetComponentInParent<PlayerControls>();
+            coolDown = gameObject.GetComponent<Weapon>().GetAttackSpeed();
         }
 
         private void Update()
         {
+            
             if (Input.GetKey(_controls.attack))
             {
+                if (isTouching)
+                {
+                    Attack(_enemy);
+                }
                 //somehow it measures the time in seconds?
                 holdTime += 1*Time.deltaTime;
                 if (holdTime > 2f)
                 {
-                    charged = true;
-                    holdTime = -1f;
+                    holdTime = 0;
                 }
 
             }
             else
             {
                 charged = false;
-                holdTime = -1;
+                holdTime = 0;
+            }
+        }
+        
+        //Because This is the physics engine and it reacts more slowly than Update, which is per frame
+
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (collision.transform.gameObject.tag == "Player")
+            {
+                _enemy = collision.transform;
+                isTouching = true;       
             }
         }
 
-        private void OnTriggerEnter2D(Collider2D collider)
+        private void OnCollisionStay2D(Collision2D collision)
         {
-            if (Input.GetKey(_controls.attack) &&
-                collider.gameObject.tag == "Player")
-                {
-                    Attack(collider.transform);
-                }
-
-                if (charged)
-                {
-                    SpecialAttack();
-                }
+            if (collision.transform.gameObject.tag == "Player")
+            {
+                _enemy = collision.transform;
+                isTouching = true;       
+            }     
         }
 
-        private void OnTriggerStay2D(Collider2D collider)
+        private void OnCollisionExit2D(Collision2D collision)
         {
-            var compareTag = collider.gameObject.tag == "Player";
-            if (Input.GetKey(_controls.attack)
-                && compareTag)
-                {
-                    Attack(collider.transform);
-                }
-
-                if (Input.GetKey(_controls.attack) && charged)
-                {
-                    SpecialAttack();
-                }
+            if (collision.transform.gameObject.tag == "Player")
+            {
+                _enemy = collision.transform;
+                isTouching = false;       
+            }       
         }
 
         private void Attack(Transform enemy)
