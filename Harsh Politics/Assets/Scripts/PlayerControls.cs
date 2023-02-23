@@ -13,6 +13,8 @@ public class PlayerControls : MonoBehaviour
     public KeyCode attack;
 
     public KeyCode drop;
+
+    public int whatIsGround;
     // Start is called before the first frame update
     void Start()
     {

@@ -2,10 +2,10 @@ using System;
 using DefaultNamespace.InspectorSettings;
 using UnityEngine;
 
-namespace PlayerAttachment
+namespace PlayerAttachment 
 {
     [Serializable]
-    public class Health
+    public class Health : GUI
     {
         [SerializeField]
         private int _maxHealth;

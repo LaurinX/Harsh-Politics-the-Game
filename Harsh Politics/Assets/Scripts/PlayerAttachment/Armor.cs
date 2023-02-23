@@ -5,7 +5,7 @@ using UnityEngine;
 namespace PlayerAttachment
 {
     [Serializable]
-    public class Armor
+    public class Armor : GUI
     {
         [ReadOnly]
         [SerializeField]
