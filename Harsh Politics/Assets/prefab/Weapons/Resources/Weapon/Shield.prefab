@@ -43,11 +43,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4246561081080807959}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 493e32596ace42b6aa46f5f1d06fe83e, type: 3}
+  m_Script: {fileID: 11500000, guid: d1655a3c0d6e4fa4aa843dc4347b5105, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
-  attackSpeed: 1
+  damage: 0
+  attackSpeed: 0
 --- !u!212 &3231789022615201389
 SpriteRenderer:
   m_ObjectHideFlags: 0

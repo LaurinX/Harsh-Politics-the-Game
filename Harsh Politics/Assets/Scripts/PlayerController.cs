@@ -13,15 +13,7 @@ public class PlayerController : MonoBehaviour
     public Transform groundCheckPoint;
     public float groundCheckRadius;
     public bool isGrounded;
-    // Bullet stuff should not be in PlayerController.cs
-    //TODO Create own Script for Bullet Stuff
-    public GameObject Bullet;
-    public Transform throwPoint;
-    public int bulletCooldownBase;
-    public int bulletCooldown = 0;
 
-    
-   
     // Start is called before the first frame update
     void Start()
     {
@@ -37,11 +29,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (bulletCooldown > 0)
-        {
-            bulletCooldown--;
-        }
-
         isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, groundCheckRadius, _controls.whatIsGround);
        
         if (Input.GetKey(_controls.left)) 
@@ -61,13 +48,6 @@ public class PlayerController : MonoBehaviour
         {
             _animator.SetTrigger("JumpButtonClicked");
             theRB.velocity = new Vector2(theRB.velocity.x, _controls.jumpForce);
-        }
-
-        if (Input.GetKey(_controls.attack) && bulletCooldown == 0)
-        {
-            GameObject bulletClone = (GameObject)Instantiate(Bullet, throwPoint.position, throwPoint.rotation);
-            bulletClone.transform.localScale = transform.localScale;
-            bulletCooldown = bulletCooldownBase;
         }
 
         if (theRB.velocity.x < 0)

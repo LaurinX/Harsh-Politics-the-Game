@@ -1,7 +1,5 @@
-using System;
 using DefaultNamespace;
-using Entity;
-using Unity.VisualScripting;
+using Entities;
 using UnityEngine;
 
 //attached to hand
@@ -10,91 +8,44 @@ namespace GameLogic
     public class Combat : MonoBehaviour
     {
         private PlayerControls _controls;
-
-        private bool isTouching = false;
-
+        
         private Transform _enemy;
 
         private float holdTime = 0;
         
-        private bool charged = false;
-
-        private float coolDown;
-
-        private float pauseTime;
-        
         private void Start()
         {
             _controls = transform.GetComponentInParent<PlayerControls>();
-            coolDown = gameObject.GetComponent<Weapon>().GetAttackSpeed();
         }
 
         private void Update()
         {
             
-            if (Input.GetKey(_controls.attack))
+            Counter(Input.GetKey(_controls.attack));
+            
+            if (holdTime is > 0f and < 0.5f)
             {
-                //somehow it measures the time in seconds?
-                holdTime += 1*Time.deltaTime;
-                if (holdTime > 2f)
-                {
-                    holdTime = 0;
-                }
+                gameObject.GetComponentInChildren<Weapon>().Attack();
+            }
 
-                if (pauseTime >= coolDown && isTouching)
-                {
-                    Attack(_enemy);
-                    pauseTime = 0;
-                }
-
+            if (holdTime >= 2f)
+            {
+                SpecialAttack();
+            }
+        }
+        
+        private void Counter(bool interactionKey)
+        {
+            if (interactionKey)
+            {
+                holdTime += 1 * Time.deltaTime;
             }
             else
             {
-                pauseTime += 1 * Time.deltaTime;
-                charged = false;
                 holdTime = 0;
             }
         }
         
-        //Because This is the physics engine and it reacts more slowly than Update, which is per frame
-
-        private void OnTriggerEnter2D(Collider2D collision)
-        {
-            if (collision.transform.gameObject.tag == "Player")
-            {
-                collision.transform.GetComponent<Rigidbody2D>().sleepMode = RigidbodySleepMode2D.NeverSleep;
-                _enemy = collision.transform;
-                isTouching = true;       
-            }
-        }
-
-        private void OnTriggerStay2D(Collider2D collision)
-        {
-            if (collision.transform.gameObject.tag == "Player")
-            {
-                _enemy = collision.transform;
-                isTouching = true;
-            }
-
-        }
-
-        private void OnTriggerExit2D(Collider2D collision)
-        {
-            if (collision.transform.gameObject.tag == "Player")
-            {
-                collision.transform.GetComponent<Rigidbody2D>().sleepMode = RigidbodySleepMode2D.StartAwake;
-                _enemy = null;
-                isTouching = false;       
-            }       
-        }
-
-        private void Attack(Transform enemy)
-        {
-            var damage = gameObject.GetComponent<Weapon>().GetDamageValue();
-        
-            enemy.gameObject.GetComponent<PlayerBody>().SendMessage("TakeDamage", damage);
-        }
-
         private void SpecialAttack()
         {
 

@@ -1,4 +1,5 @@
-using Entity;
+using DefaultNamespace;
+using Entities;
 using GameLogic;
 using UnityEngine;
 
@@ -8,40 +9,35 @@ namespace PlayerAttachment
     {
         private PlayerControls _controls;
         
-        private bool _fistActive;
-
         private Transform _currentWeapon;
         
         private float holdTime = 0;
-
-        private Combat _playerCombat;
         
         private void Start()
         {
             CreateDefaultWeapon();
             
             _controls = transform.parent.GetComponent<PlayerControls>();
-
-            _fistActive = true;
+            
+            gameObject.AddComponent<Combat>();
         }
 
         private void Update()
         {
-            if (Input.GetKey(_controls.attack))
+            Counter(Input.GetKey(_controls.interaction));
+            
+            if (holdTime is > 0f and < 0.5f && _currentWeapon is not null)
             {
-                
+                DropWeapon(_currentWeapon.gameObject);
+                _currentWeapon = null;
             }
-            //Holding interaction key for 3 seconds causes a drop of the current weapon
-            if (Input.GetKey(_controls.interaction))
-            {
-                //somehow it measures the time in seconds?
-                holdTime += 1*Time.deltaTime;
-                if (holdTime > 2f)
-                {
-                    DropWeapon(_currentWeapon);
+        }
 
-                    holdTime = 0;
-                }
+        private void Counter(bool interactionKey)
+        {
+            if (interactionKey)
+            {
+                holdTime += 1 * Time.deltaTime;
             }
             else
             {
@@ -53,11 +49,12 @@ namespace PlayerAttachment
         {
             if (_currentWeapon != null)
             {
-                DropWeapon(_currentWeapon);
+                DropWeapon(_currentWeapon.gameObject);
             }
             Destroy(weapon.GetComponent<Rigidbody2D>());
             weapon.GetComponent<Weapon>().SetMaster(true);
             weapon.SetParent(transform, false);
+            weapon.localRotation = Quaternion.identity;
             weapon.gameObject.GetComponent<Collider2D>().isTrigger = true;
             weapon.localPosition = Vector3.zero;
             _currentWeapon = weapon;
@@ -68,19 +65,21 @@ namespace PlayerAttachment
         private void OnTriggerStay2D(Collider2D col)
         {
             if (Input.GetKey(_controls.interaction) &&
-                col.gameObject.tag == "Weapon")
+                col.gameObject.tag == "Weapon" &&
+                holdTime >= 0.5f)
             {
                 ChangeWeapon(col.transform);
             }
         }
 
-        private void DropWeapon(Transform weapon)
+        private void DropWeapon(GameObject weapon)
         {
-            weapon.gameObject.AddComponent<Rigidbody2D>();
-            weapon.gameObject.GetComponent<Collider2D>().isTrigger = false;
-            weapon.gameObject.GetComponent<Weapon>().SetMaster(false);
-            Destroy(weapon.gameObject.GetComponent<Combat>());
-            weapon.parent = null;
+            weapon.AddComponent<Rigidbody2D>();
+            weapon.GetComponent<Collider2D>().isTrigger = false;
+            weapon.GetComponent<Weapon>().SetMaster(false);
+            Destroy(weapon.GetComponent<Combat>());
+            weapon.AddComponent<Throwable>();
+            weapon.transform.parent = null;
             SetDefaultWeapon(true);
         }
 
@@ -96,7 +95,6 @@ namespace PlayerAttachment
         private void SetDefaultWeapon(bool modus)
         {
             transform.GetChild(0).gameObject.SetActive(modus);
-            _fistActive = modus;
         }
     }
 }

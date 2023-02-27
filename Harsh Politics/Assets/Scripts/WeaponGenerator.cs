@@ -5,15 +5,13 @@ using Random = System.Random;
 
 public enum WeaponList
 {
-    Dagger, Sword, Shield
+    Dagger, Sword, Shield, Gun
 }
     public class WeaponGenerator : MonoBehaviour
     {
         [SerializeField]
         [Range(5,20)]
         private int generateNewInSec;
-
-        private Transform _currentWeapon;
         
         private void Start()
         {
@@ -42,9 +40,10 @@ public enum WeaponList
         {
             string name = "Weapon/" + RandomizeThroughTheList();
             var weapon = Instantiate(Resources.Load(name) as GameObject, transform);
+            
+            //TODO:maybe set this by default in prefab
             weapon.GetComponent<Collider2D>().isTrigger = false;
             weapon.AddComponent<Rigidbody2D>();
-            _currentWeapon = weapon.transform;
         }
 
     }
