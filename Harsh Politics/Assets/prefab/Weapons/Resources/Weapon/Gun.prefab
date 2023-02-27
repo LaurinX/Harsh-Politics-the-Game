@@ -50,7 +50,7 @@ MonoBehaviour:
   attackSpeed: 0
   maxBulletNumber: 10
   currentBulletNumber: 0
-  bulletCooldownBase: 0
+  bulletCoolDown: 2
 --- !u!212 &-5636321085617059806
 SpriteRenderer:
   m_ObjectHideFlags: 0

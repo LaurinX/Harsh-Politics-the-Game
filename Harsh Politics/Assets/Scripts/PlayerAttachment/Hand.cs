@@ -78,7 +78,7 @@ namespace PlayerAttachment
             weapon.GetComponent<Collider2D>().isTrigger = false;
             weapon.GetComponent<Weapon>().SetMaster(false);
             Destroy(weapon.GetComponent<Combat>());
-            weapon.AddComponent<Throwable>();
+            weapon.AddComponent<Throwable>().GetComponent<Throwable>().Throwing(GetComponentInParent<PlayerBody>().CurrentFaceDirection());
             weapon.transform.parent = null;
             SetDefaultWeapon(true);
         }

@@ -92,7 +92,7 @@ namespace DefaultNamespace
 
             if (col.gameObject.GetComponent<Bullet>())
             {
-                col.gameObject.GetComponent<Bullet>().BulletDamage();
+                _health.DecreaseHealth(col.gameObject.GetComponent<Bullet>().BulletDamage());
             }
         }
 

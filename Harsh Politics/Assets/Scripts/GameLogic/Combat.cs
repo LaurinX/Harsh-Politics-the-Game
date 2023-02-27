@@ -23,7 +23,7 @@ namespace GameLogic
             
             Counter(Input.GetKey(_controls.attack));
             
-            if (holdTime is > 0f and < 0.5f)
+            if (holdTime is > 0f and < 0.2f)
             {
                 gameObject.GetComponentInChildren<Weapon>().Attack();
             }

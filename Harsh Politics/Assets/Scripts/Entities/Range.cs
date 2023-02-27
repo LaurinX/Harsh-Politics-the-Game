@@ -40,9 +40,11 @@ namespace Entities
                 && !StrikeMode)
             {
                 currentBulletNumber--;
-                GameObject bulletClone = Instantiate(Resources.Load("Bullet/Bullet") as GameObject, transform.parent.position, transform.parent.rotation);
-                bulletClone.transform.localScale = transform.localScale;
-                bulletClone.transform.SetParent(transform);
+                
+                var weapon = Instantiate(Resources.Load("Bullet/Bullet") as GameObject, transform);
+
+                weapon.GetComponent<Collider2D>().isTrigger = false;
+                weapon.GetComponent<Bullet>().SetBulletDamage(GetDamageValue());
                 internalCount = 0;
             }
         }

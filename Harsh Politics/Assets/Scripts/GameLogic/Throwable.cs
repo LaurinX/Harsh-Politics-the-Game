@@ -1,5 +1,3 @@
-using System;
-using DefaultNamespace;
 using UnityEngine;
 
 namespace GameLogic
@@ -9,11 +7,6 @@ namespace GameLogic
         private Rigidbody2D _body;
 
         private float speed = 20;
-        
-        private void Start()
-        {
-            Throwing(false);
-        }
 
         private void Update()
         {

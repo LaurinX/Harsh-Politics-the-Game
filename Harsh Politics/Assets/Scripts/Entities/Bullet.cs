@@ -2,45 +2,35 @@ using UnityEngine;
 
 namespace Entities
 {
+    [RequireComponent(typeof(Rigidbody2D))]
     public class Bullet : MonoBehaviour
     {
-        public int bulletSpeed;
-        public int bulletDecay;
-        private int bulletDamage;
+        public float bulletDecay;
+        public int bulletDamage;
 
-        private Rigidbody2D theRB;
-        // Start is called before the first frame update
+        public Rigidbody2D bulletBody;
+        
         void Start()
         {
-            bulletDamage = GetComponentInParent<Range>().GetDamageValue();
-            theRB = GetComponent<Rigidbody2D>();
+            bulletBody = GetComponent<Rigidbody2D>();
+
         }
 
-        // Update is called once per frame
         void Update()
         {
-            bulletDecay--;
-            if (bulletDecay == 0)
+            bulletDecay -= 1 * Time.deltaTime;
+            if (bulletDecay <= 0f)
             {
                 bulletDestroy();
             }
-            //instead of velocity addforce?
-            theRB.velocity = new(bulletSpeed * transform.localScale.x, 0);
             
-            // if (Input.GetKey(_controls.attack) && bulletCooldown == 0)
-            // {
-            //     GameObject bulletClone = (GameObject)Instantiate(Bullet, throwPoint.position, throwPoint.rotation);
-            //     bulletClone.transform.localScale = transform.localScale;
-            //     bulletCooldown = bulletCooldownBase;
-            // }
-            
-            
+            bulletBody.AddForce(Vector2.right,ForceMode2D.Force);
         }
         void bulletDestroy()
         {
             Destroy(gameObject);
         }
-        void OnCollisionEnter2D(Collision2D other)
+        void OnTriggerEnter2D(Collider2D other)
         {
             bulletDestroy();
         }
@@ -48,6 +38,11 @@ namespace Entities
         public int BulletDamage()
         { 
             return bulletDamage;
+        }
+
+        public void SetBulletDamage(int damage)
+        {
+            bulletDamage = damage;
         }
     }
     
