@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace Entities
@@ -31,7 +30,7 @@ namespace Entities
 
         protected override void Animation()
         {
-            if (holdTime >= 3f)
+            if (holdTime >= 0.1f)
             {
                 StrikeMode = false;
                 gameObject.GetComponent<Collider2D>().isTrigger = true;

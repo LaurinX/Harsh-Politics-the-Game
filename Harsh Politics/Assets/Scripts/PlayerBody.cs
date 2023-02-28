@@ -1,6 +1,5 @@
 using System;
 using Entities;
-using GameLogic;
 using PlayerAttachment;
 using UnityEngine;
 
@@ -67,11 +66,6 @@ namespace DefaultNamespace
         private void OnDestroy()
         {
             _health.LifeConsumed -= Destroybody;
-        }
-
-        public void TakeDamage(int damage)
-        {
-            _health.DecreaseHealth(damage);
         }
 
         void Destroybody(object sender, EventArgs e)

@@ -1,7 +1,4 @@
-using System.Numerics;
-using DefaultNamespace;
 using UnityEngine;
-using UnityEngine.UI;
 using Vector2 = UnityEngine.Vector2;
 
 namespace Entities
