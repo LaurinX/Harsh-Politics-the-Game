@@ -1,5 +1,7 @@
 using System;
+using DefaultNamespace;
 using DefaultNamespace.InspectorSettings;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Entities
@@ -45,6 +47,8 @@ namespace Entities
 
                 weapon.GetComponent<Collider2D>().isTrigger = false;
                 weapon.GetComponent<Bullet>().SetBulletDamage(GetDamageValue());
+                weapon.GetComponent<Bullet>().SetBulletDirection(GetComponentInParent<PlayerBody>().CurrentFaceDirection());
+                weapon.transform.parent = null;
                 internalCount = 0;
             }
         }

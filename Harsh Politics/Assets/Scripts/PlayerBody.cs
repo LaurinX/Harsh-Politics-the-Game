@@ -85,14 +85,18 @@ namespace DefaultNamespace
                 _health.DecreaseHealth(1);
             }
 
-            if (col.gameObject.GetComponent<Weapon>().StrikeMode)
+            if (col.gameObject.TryGetComponent(out Weapon weapon))
             {
-                _health.DecreaseHealth(col.gameObject.GetComponent<Weapon>().GetDamageValue());
+                if (weapon.StrikeMode)
+                {
+                    _health.DecreaseHealth(col.gameObject.GetComponent<Weapon>().GetDamageValue());
+                }
             }
 
-            if (col.gameObject.GetComponent<Bullet>())
+            if (col.gameObject.TryGetComponent(out Bullet bullet))
             {
-                _health.DecreaseHealth(col.gameObject.GetComponent<Bullet>().BulletDamage());
+                
+                _health.DecreaseHealth(bullet.BulletDamage());
             }
         }
 
