@@ -11,7 +11,7 @@ namespace Entities
     {
         [SerializeField]
         private float bulletDecay = 5f;
-        [SerializeField]
+
         private int bulletDamage;
 
         private Rigidbody2D bulletBody;

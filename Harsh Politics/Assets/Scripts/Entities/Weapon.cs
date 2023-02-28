@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Entities
@@ -7,7 +8,7 @@ namespace Entities
         [SerializeField]
         private int damage;
         [SerializeField]
-        private float attackSpeed;
+        private float attackSpeed = 1;
         
         private bool hasMaster = false;
 
@@ -24,7 +25,7 @@ namespace Entities
 
         public float GetAttackSpeed()
         {
-            return 1/attackSpeed;
+            return attackSpeed;
         }
         
         public void SetMaster(bool master)
@@ -51,7 +52,6 @@ namespace Entities
         public abstract void Attack();
 
         protected abstract void Animation();
-
-
+        
     }
 }

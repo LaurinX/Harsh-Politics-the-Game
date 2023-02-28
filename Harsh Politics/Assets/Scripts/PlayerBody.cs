@@ -22,6 +22,8 @@ namespace DefaultNamespace
 
         private bool faceDirection;
 
+        private float knockbackForce = 1500;
+
         private void Start()
         {
             //Creates a hand from prefab and attach it to player as child
@@ -82,23 +84,37 @@ namespace DefaultNamespace
             if (col.relativeVelocity.magnitude > 20 &&
                 col.gameObject.GetComponent<Weapon>())
             {
+                KnockBack(col);
                 _health.DecreaseHealth(1);
-            }
-
-            if (col.gameObject.TryGetComponent(out Weapon weapon))
-            {
-                if (weapon.StrikeMode)
-                {
-                    _health.DecreaseHealth(col.gameObject.GetComponent<Weapon>().GetDamageValue());
-                }
             }
 
             if (col.gameObject.TryGetComponent(out Bullet bullet))
             {
-                
+                KnockBack(col);
                 _health.DecreaseHealth(bullet.BulletDamage());
             }
         }
 
+        private void OnTriggerEnter2D(Collider2D col)
+        {
+            if (col.gameObject.TryGetComponent(out Weapon weapon))
+            {
+                if (weapon.StrikeMode)
+                {
+                    Vector2 difference = (transform.position - col.transform.position).normalized;
+                    Vector2 force = difference * knockbackForce;
+                    gameObject.GetComponent<Rigidbody2D>().AddForce(force, ForceMode2D.Force); 
+                    
+                    _health.DecreaseHealth(col.gameObject.GetComponent<Weapon>().GetDamageValue());
+                }
+            }
+        }
+
+        private void KnockBack(Collision2D col)
+        {
+            Vector2 difference = (transform.position - col.transform.position).normalized;
+            Vector2 force = difference * knockbackForce;
+            gameObject.GetComponent<Rigidbody2D>().AddForce(force, ForceMode2D.Force); 
+        }
     }
 }

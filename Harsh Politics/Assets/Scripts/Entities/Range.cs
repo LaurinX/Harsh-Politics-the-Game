@@ -15,9 +15,6 @@ namespace Entities
         [SerializeField]
         private int currentBulletNumber;
         
-        [SerializeField]
-        private int bulletCoolDown;
-
         private float internalCount;
         
         private void Update()
@@ -38,7 +35,7 @@ namespace Entities
 
         public override void Attack()
         {
-            if (currentBulletNumber > 0 && internalCount >= (float)bulletCoolDown
+            if (currentBulletNumber > 0 && internalCount >= (float)GetAttackSpeed()
                 && !StrikeMode)
             {
                 currentBulletNumber--;

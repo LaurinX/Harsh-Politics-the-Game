@@ -1,4 +1,3 @@
-using DefaultNamespace;
 using Entities;
 using UnityEngine;
 

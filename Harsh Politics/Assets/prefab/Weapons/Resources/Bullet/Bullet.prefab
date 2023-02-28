@@ -99,7 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67dee161b9b749ba94d461e3a59967fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletDecay: 20
+  bulletDecay: 5
+  bulletDamage: 0
 --- !u!61 &7611511131869968347
 BoxCollider2D:
   m_ObjectHideFlags: 0

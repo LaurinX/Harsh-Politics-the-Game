@@ -47,10 +47,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  attackSpeed: 0
+  attackSpeed: 2
   maxBulletNumber: 10
   currentBulletNumber: 0
-  bulletCoolDown: 2
 --- !u!212 &-5636321085617059806
 SpriteRenderer:
   m_ObjectHideFlags: 0

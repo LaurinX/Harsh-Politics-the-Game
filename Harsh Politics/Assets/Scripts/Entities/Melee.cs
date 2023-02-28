@@ -1,12 +1,23 @@
 using System;
+using UnityEngine;
 
 namespace Entities
 {
     public class Melee : Weapon
     {
+        private float holdTime;
         private void Update()
         {
             CheckIfMasterExists();
+            if (StrikeMode)
+            {
+                holdTime += 1 * Time.deltaTime;
+                Animation();
+            }
+            else
+            {
+                holdTime = 0;
+            }
         }
 
         public override void Attack()
@@ -14,14 +25,18 @@ namespace Entities
             if (!StrikeMode)
             {
                 StrikeMode = true;
-                Animation();
+                gameObject.GetComponent<Collider2D>().isTrigger = false;
             }
         }
 
         protected override void Animation()
         {
-            
-            StrikeMode = false;
+            if (holdTime >= 3f)
+            {
+                StrikeMode = false;
+                gameObject.GetComponent<Collider2D>().isTrigger = true;
+            }
+
         }
     }
 }
