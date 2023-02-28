@@ -36,7 +36,7 @@ namespace DefaultNamespace
 
         private void OnCollisionEnter2D(Collision2D col)
         {
-            if (col.relativeVelocity.magnitude > 20 &&
+            if (col.relativeVelocity.magnitude > 40 &&
                 col.gameObject.GetComponent<Weapon>())
             {
                 KnockBack(col.transform);

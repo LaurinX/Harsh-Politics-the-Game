@@ -9,7 +9,7 @@ namespace GameLogic
     {
         private Rigidbody2D _body;
 
-        private float speed = 20;
+        private float speed = 40;
 
         private void Start()
         {
