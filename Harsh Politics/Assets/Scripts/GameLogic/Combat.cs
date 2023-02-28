@@ -31,6 +31,11 @@ namespace GameLogic
             {
                 SpecialAttack();
             }
+
+            if (transform.parent is null)
+            {
+                Destroy(this);
+            }
         }
         
         private void Counter(bool interactionKey)

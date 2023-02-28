@@ -1,22 +1,29 @@
+using System;
+using SupportFiles;
 using UnityEngine;
 
 namespace GameLogic
 {
+    [RequireComponent(typeof(Rigidbody2D))]
     public class Throwable : MonoBehaviour
     {
         private Rigidbody2D _body;
 
         private float speed = 20;
 
+        private void Start()
+        {
+            _body = GetComponent<Rigidbody2D>();
+        }
+
         private void Update()
         {
             Destroy(this);
         }
 
-        public void Throwing(bool direction)
+        public void Throwing(FaceDirection direction)
         {
-            _body = GetComponent<Rigidbody2D>();
-                if (direction)
+                if (direction == FaceDirection.Left)
                 {
                     _body.velocity = new(- speed * transform.localScale.x, 0);
                 }

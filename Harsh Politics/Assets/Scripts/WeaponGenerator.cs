@@ -44,6 +44,7 @@ public enum WeaponList
             //TODO:maybe set this by default in prefab
             weapon.GetComponent<Collider2D>().isTrigger = false;
             weapon.AddComponent<Rigidbody2D>();
+            weapon.transform.parent = null;
         }
 
     }

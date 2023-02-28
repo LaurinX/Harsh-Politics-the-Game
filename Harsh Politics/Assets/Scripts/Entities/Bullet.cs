@@ -1,3 +1,4 @@
+using SupportFiles;
 using UnityEngine;
 using Vector2 = UnityEngine.Vector2;
 
@@ -13,8 +14,7 @@ namespace Entities
 
         private Rigidbody2D bulletBody;
 
-        private bool bulletDirection = false;
-        
+        private FaceDirection _faceDirection;
         void Start()
         {
             bulletBody = GetComponent<Rigidbody2D>();
@@ -28,7 +28,7 @@ namespace Entities
                 bulletDestroy();
             }
 
-            if (bulletDirection)
+            if (_faceDirection == FaceDirection.Left)
             {
                 bulletBody.AddForce(Vector2.left,ForceMode2D.Force);
             }
@@ -56,9 +56,9 @@ namespace Entities
             bulletDamage = damage;
         }
 
-        public void SetBulletDirection(bool direction)
+        public void CurrentFaceDirection(FaceDirection direction)
         {
-            bulletDirection = direction;
+            _faceDirection = direction;
         }
     }
     

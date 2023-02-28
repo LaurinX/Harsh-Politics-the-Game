@@ -1,5 +1,5 @@
-using DefaultNamespace;
 using DefaultNamespace.InspectorSettings;
+using PlayerAttachment;
 using UnityEngine;
 
 namespace Entities
@@ -14,6 +14,7 @@ namespace Entities
         private int currentBulletNumber;
         
         private float internalCount;
+
         
         private void Update()
         {
@@ -42,7 +43,8 @@ namespace Entities
 
                 weapon.GetComponent<Collider2D>().isTrigger = false;
                 weapon.GetComponent<Bullet>().SetBulletDamage(GetDamageValue());
-                weapon.GetComponent<Bullet>().SetBulletDirection(GetComponentInParent<PlayerBody>().CurrentFaceDirection());
+                weapon.GetComponent<Bullet>().CurrentFaceDirection(GetComponentInParent<Hand>().CurrentFaceDirection());
+
                 weapon.transform.parent = null;
                 internalCount = 0;
             }

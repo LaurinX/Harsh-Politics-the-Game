@@ -9,11 +9,11 @@ namespace Entities
         [SerializeField]
         private float attackSpeed = 1;
         
-        private bool hasMaster = false;
-
         private float destroytime = 5;
 
         private float counter = 0;
+
+        private Collider2D _collider;
         
         public bool StrikeMode { get; set; } = false;
         
@@ -26,15 +26,10 @@ namespace Entities
         {
             return attackSpeed;
         }
-        
-        public void SetMaster(bool master)
-        {
-            hasMaster = master;
-        }
 
         public void CheckIfMasterExists()
         {
-            if (!hasMaster)
+            if (transform.parent is null)
             {
                 counter += 1 * Time.deltaTime;
                 if (counter >= destroytime)

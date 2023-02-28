@@ -1,6 +1,7 @@
 using DefaultNamespace;
 using Entities;
 using GameLogic;
+using SupportFiles;
 using UnityEngine;
 
 namespace PlayerAttachment
@@ -12,19 +13,27 @@ namespace PlayerAttachment
         private Transform _currentWeapon;
         
         private float holdTime = 0;
+
+        private FaceDirection _faceDirection;
         
         private void Start()
         {
+            //TODO: how to know where the default face direction is? So setting it manually should be removed
+            _faceDirection = FaceDirection.Right;
+            
             CreateDefaultWeapon();
             
-            _controls = transform.parent.GetComponent<PlayerControls>();
+            _controls = GetComponentInParent<PlayerControls>();
             
             gameObject.AddComponent<Combat>();
         }
 
         private void Update()
         {
-            Counter(Input.GetKey(_controls.interaction));
+            
+            HandRotation(Input.GetKey(_controls.left), Input.GetKey(_controls.right));
+
+            Counting(Input.GetKey(_controls.interaction));
             
             if (holdTime is > 0f and < 0.5f && _currentWeapon is not null)
             {
@@ -32,8 +41,25 @@ namespace PlayerAttachment
                 _currentWeapon = null;
             }
         }
+        
+        //Naming is bad, it basically changes the object position, which holds weapons and fist relative to the player face direction
+        private void HandRotation(bool  left = false, bool right = false)
+        {
+            if (left && _faceDirection == FaceDirection.Right)
+            {
+                transform.localPosition = new Vector3(-transform.localPosition.x, 0, 0);
+                transform.localRotation = new Quaternion(0f, 180f, 0f, 0f);
+                _faceDirection = FaceDirection.Left;
+            }
+            if (right && _faceDirection == FaceDirection.Left)
+            {
+                transform.localPosition = new Vector3(-transform.localPosition.x, 0, 0);
+                transform.localRotation = new Quaternion(0f, 0f, 0f, 0f);
+                _faceDirection = FaceDirection.Right;
+            }
+        }
 
-        private void Counter(bool interactionKey)
+        private void Counting(bool interactionKey)
         {
             if (interactionKey)
             {
@@ -52,13 +78,11 @@ namespace PlayerAttachment
                 DropWeapon(_currentWeapon.gameObject);
             }
             Destroy(weapon.GetComponent<Rigidbody2D>());
-            weapon.GetComponent<Weapon>().SetMaster(true);
             weapon.SetParent(transform, false);
             weapon.localRotation = Quaternion.identity;
             weapon.gameObject.GetComponent<Collider2D>().isTrigger = true;
             weapon.localPosition = Vector3.zero;
             _currentWeapon = weapon;
-            weapon.gameObject.AddComponent<Combat>();
             SetDefaultWeapon(false);
         }
 
@@ -74,11 +98,9 @@ namespace PlayerAttachment
 
         private void DropWeapon(GameObject weapon)
         {
-            weapon.AddComponent<Rigidbody2D>();
+            //TODO:expensive can it be refactored?
             weapon.GetComponent<Collider2D>().isTrigger = false;
-            weapon.GetComponent<Weapon>().SetMaster(false);
-            Destroy(weapon.GetComponent<Combat>());
-            weapon.AddComponent<Throwable>().GetComponent<Throwable>().Throwing(GetComponentInParent<PlayerBody>().CurrentFaceDirection());
+            weapon.AddComponent<Throwable>().GetComponent<Throwable>().Throwing(_faceDirection);
             weapon.transform.parent = null;
             SetDefaultWeapon(true);
         }
@@ -87,7 +109,6 @@ namespace PlayerAttachment
         {
             //Creates a Fist
             var fist = Instantiate(Resources.Load("Default/Fist") as GameObject, transform);
-            fist.GetComponent<Weapon>().SetMaster(true);
             //renaming 
             fist.name = "Fist";
         }
@@ -95,6 +116,11 @@ namespace PlayerAttachment
         private void SetDefaultWeapon(bool modus)
         {
             transform.GetChild(0).gameObject.SetActive(modus);
+        }
+
+        public FaceDirection CurrentFaceDirection()
+        {
+            return _faceDirection;
         }
     }
 }
