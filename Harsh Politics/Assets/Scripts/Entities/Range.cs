@@ -38,7 +38,7 @@ namespace Entities
                 && !StrikeMode)
             {
                 currentBulletNumber--;
-                
+                //schlechtes naming das ist eine KUGEL
                 var weapon = Instantiate(Resources.Load("Bullet/Bullet") as GameObject, transform);
 
                 weapon.GetComponent<Collider2D>().isTrigger = false;
@@ -46,6 +46,7 @@ namespace Entities
                 weapon.GetComponent<Bullet>().CurrentFaceDirection(GetComponentInParent<Hand>().CurrentFaceDirection());
 
                 weapon.transform.parent = null;
+                
                 internalCount = 0;
             }
         }

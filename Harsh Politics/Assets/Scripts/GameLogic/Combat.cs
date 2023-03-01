@@ -32,6 +32,7 @@ namespace GameLogic
                 SpecialAttack();
             }
 
+            //don't remember why it's here
             if (transform.parent is null)
             {
                 Destroy(this);
@@ -55,6 +56,7 @@ namespace GameLogic
 
         }
 
+        //optional
         private void Defense()
         {
         

@@ -1,7 +1,6 @@
 using System;
 using Entities;
 using PlayerAttachment;
-using SupportFiles;
 using UnityEngine;
 
 namespace DefaultNamespace
@@ -34,6 +33,7 @@ namespace DefaultNamespace
             Destroy(gameObject);
         }
 
+        //Check weapon also over layer because collider box overlapping 
         private void OnCollisionEnter2D(Collision2D col)
         {
             if (col.relativeVelocity.magnitude > 40 &&

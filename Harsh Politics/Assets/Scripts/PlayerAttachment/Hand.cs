@@ -1,5 +1,3 @@
-using DefaultNamespace;
-using Entities;
 using GameLogic;
 using SupportFiles;
 using UnityEngine;
@@ -35,6 +33,7 @@ namespace PlayerAttachment
 
             Counting(Input.GetKey(_controls.interaction));
             
+            //write in method
             if (holdTime is > 0f and < 0.5f && _currentWeapon is not null)
             {
                 DropWeapon(_currentWeapon.gameObject);
@@ -42,7 +41,7 @@ namespace PlayerAttachment
             }
         }
         
-        //Naming is bad, it basically changes the object position, which holds weapons and fist relative to the player face direction
+        //Naming is bad, it basically changes the object position, which holds weapons relative to the player face direction
         private void HandRotation(bool  left = false, bool right = false)
         {
             if (left && _faceDirection == FaceDirection.Right)
