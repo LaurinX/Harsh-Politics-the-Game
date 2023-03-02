@@ -30,11 +30,11 @@ namespace Entities
 
             if (_faceDirection == FaceDirection.Left)
             {
-                bulletBody.AddForce(Vector2.left,ForceMode2D.Force);
+                bulletBody.AddForce(Vector2.left*10,ForceMode2D.Force);
             }
             else
             {
-                bulletBody.AddForce(Vector2.right,ForceMode2D.Force);
+                bulletBody.AddForce(Vector2.right*10,ForceMode2D.Force);
             }
         }
         void bulletDestroy()

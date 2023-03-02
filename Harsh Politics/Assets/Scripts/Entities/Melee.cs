@@ -1,3 +1,5 @@
+using System;
+using PlayerAttachment;
 using UnityEngine;
 
 namespace Entities
@@ -5,6 +7,14 @@ namespace Entities
     public class Melee : Weapon
     {
         private float holdTime;
+
+        private Collider2D _collider;
+
+        private void Start()
+        {
+            _collider = gameObject.GetComponent<Collider2D>();
+        }
+
         private void Update()
         {
             CheckIfMasterExists();
@@ -24,7 +34,7 @@ namespace Entities
             if (!StrikeMode)
             {
                 StrikeMode = true;
-                gameObject.GetComponent<Collider2D>().isTrigger = false;
+                _collider.isTrigger = false;
             }
         }
 
@@ -33,7 +43,7 @@ namespace Entities
             if (holdTime >= 0.1f)
             {
                 StrikeMode = false;
-                gameObject.GetComponent<Collider2D>().isTrigger = true;
+                _collider.isTrigger = true;
             }
 
         }

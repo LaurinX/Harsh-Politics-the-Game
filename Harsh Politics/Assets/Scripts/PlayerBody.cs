@@ -17,8 +17,9 @@ namespace DefaultNamespace
         {
             
             //Creates a hand from prefab and attach it to player as child
-            Instantiate(Resources.Load("Default/A_Hand") as GameObject, transform);
-            
+            var hand = Instantiate(Resources.Load("Default/A_Hand") as GameObject, transform);
+            hand.layer = gameObject.layer;
+
             _health.SetHealth();
             _health.LifeConsumed += Destroybody;
         }

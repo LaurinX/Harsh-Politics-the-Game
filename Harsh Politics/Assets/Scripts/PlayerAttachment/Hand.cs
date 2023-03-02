@@ -9,6 +9,10 @@ namespace PlayerAttachment
         private PlayerControls _controls;
         
         private Transform _currentWeapon;
+
+        private Collider2D _currentWeaponCollider;
+
+        private Throwable _currentWeaponThrowable;
         
         private float holdTime = 0;
 
@@ -77,6 +81,7 @@ namespace PlayerAttachment
                 DropWeapon(_currentWeapon.gameObject);
             }
             Destroy(weapon.GetComponent<Rigidbody2D>());
+            weapon.gameObject.layer = transform.gameObject.layer;
             weapon.SetParent(transform, false);
             weapon.localRotation = Quaternion.identity;
             weapon.gameObject.GetComponent<Collider2D>().isTrigger = true;
@@ -89,6 +94,7 @@ namespace PlayerAttachment
         {
             if (Input.GetKey(_controls.interaction) &&
                 col.gameObject.tag == "Weapon" &&
+                col.gameObject.layer == 0 &&
                 holdTime >= 0.5f)
             {
                 ChangeWeapon(col.transform);
@@ -100,6 +106,7 @@ namespace PlayerAttachment
             //TODO:expensive can it be refactored?
             weapon.GetComponent<Collider2D>().isTrigger = false;
             weapon.AddComponent<Throwable>().GetComponent<Throwable>().Throwing(_faceDirection);
+            weapon.layer = 0;
             weapon.transform.parent = null;
             SetDefaultWeapon(true);
         }
@@ -110,6 +117,7 @@ namespace PlayerAttachment
             var fist = Instantiate(Resources.Load("Default/Fist") as GameObject, transform);
             //renaming 
             fist.name = "Fist";
+            fist.layer = transform.gameObject.layer;
         }
 
         private void SetDefaultWeapon(bool modus)
@@ -122,4 +130,5 @@ namespace PlayerAttachment
             return _faceDirection;
         }
     }
+    
 }
