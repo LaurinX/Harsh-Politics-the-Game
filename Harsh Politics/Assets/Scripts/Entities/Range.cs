@@ -1,4 +1,3 @@
-using DefaultNamespace.InspectorSettings;
 using PlayerAttachment;
 using UnityEngine;
 
@@ -8,8 +7,7 @@ namespace Entities
     {
         [SerializeField]
         private int maxBulletNumber;
-
-        [ReadOnly]
+        
         [SerializeField]
         private int currentBulletNumber;
         
