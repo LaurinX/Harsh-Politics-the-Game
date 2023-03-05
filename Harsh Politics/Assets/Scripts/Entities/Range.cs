@@ -6,6 +6,8 @@ namespace Entities
 {
     public class Range : Weapon
     {
+        public Animator anim;
+
         [SerializeField]
         private int maxBulletNumber;
 
@@ -18,7 +20,14 @@ namespace Entities
         
         private void Update()
         {
-            CheckIfMasterExists();
+            if (CheckIfMasterExists() == false)
+            {
+                GetComponent<Animator>().enabled = false;
+            }
+            else
+            {
+                GetComponent<Animator>().enabled = true;
+            }
             Counter();
         }
 
@@ -37,6 +46,8 @@ namespace Entities
             if (currentBulletNumber > 0 && internalCount >= (float)GetAttackSpeed()
                 && !StrikeMode)
             {
+                anim.SetTrigger("attack");
+
                 currentBulletNumber--;
                 
                 var weapon = Instantiate(Resources.Load("Bullet/Bullet") as GameObject, transform);
@@ -47,7 +58,7 @@ namespace Entities
 
                 weapon.transform.parent = null;
                 internalCount = 0;
-            }
+            } 
         }
 
         protected override void Animation()

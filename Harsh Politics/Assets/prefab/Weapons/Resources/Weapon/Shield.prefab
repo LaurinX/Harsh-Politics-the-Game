@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: -5415542200232905023}
   - component: {fileID: 3231789022615201389}
   - component: {fileID: 2591921471376513054}
+  - component: {fileID: -6841025024306498144}
   m_Layer: 0
   m_Name: Shield
   m_TagString: Weapon
@@ -48,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 1
   attackSpeed: 1
+  anim: {fileID: -6841025024306498144}
 --- !u!212 &3231789022615201389
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -145,3 +147,23 @@ PolygonCollider2D:
       - {x: 0.41029966, y: 0.29981673}
       - {x: 0.3061252, y: 0.30693212}
       - {x: 0.30135974, y: 0.4029585}
+--- !u!95 &-6841025024306498144
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4246561081080807959}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: da32d1d56ee19a241af35d5cba6f67ab, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0

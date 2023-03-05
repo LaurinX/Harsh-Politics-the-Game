@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: -6618341957469865512}
   - component: {fileID: -5636321085617059806}
   - component: {fileID: -6323627935975770803}
+  - component: {fileID: 5108330748958806572}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Weapon
@@ -48,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 1
   attackSpeed: 2
+  anim: {fileID: 5108330748958806572}
   maxBulletNumber: 10
   currentBulletNumber: 0
 --- !u!212 &-5636321085617059806
@@ -132,3 +134,23 @@ PolygonCollider2D:
       - {x: -0.20336452, y: -0.39506543}
       - {x: 0.4098693, y: -0.005981311}
       - {x: 0.39999998, y: 0.32}
+--- !u!95 &5108330748958806572
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5136221111507102398}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5eaf32ec50c00e149999348dd2e9b64b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0

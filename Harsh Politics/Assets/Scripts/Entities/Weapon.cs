@@ -27,8 +27,9 @@ namespace Entities
             return attackSpeed;
         }
 
-        public void CheckIfMasterExists()
+        public bool CheckIfMasterExists()
         {
+            bool play_Animation = false;
             if (transform.parent is null)
             {
                 counter += 1 * Time.deltaTime;
@@ -36,11 +37,14 @@ namespace Entities
                 {
                     Destroy(gameObject);
                 }
+                play_Animation = false;
             }
             else
             {
                 counter = 0;
+                play_Animation = true;
             }
+            return play_Animation;
         }
         
         public abstract void Attack();

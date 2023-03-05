@@ -5,9 +5,18 @@ namespace Entities
     public class Melee : Weapon
     {
         private float holdTime;
+        public Animator anim;
+        
+
         private void Update()
         {
-            CheckIfMasterExists();
+            if (CheckIfMasterExists() == false) {
+                GetComponent<Animator>().enabled = false;
+            }
+            else
+            {
+                GetComponent<Animator>().enabled = true;
+            }
             if (StrikeMode)
             {
                 holdTime += 1 * Time.deltaTime;
@@ -25,6 +34,8 @@ namespace Entities
             {
                 StrikeMode = true;
                 gameObject.GetComponent<Collider2D>().isTrigger = false;
+                anim.SetTrigger("attack");
+
             }
         }
 
@@ -34,6 +45,7 @@ namespace Entities
             {
                 StrikeMode = false;
                 gameObject.GetComponent<Collider2D>().isTrigger = true;
+                
             }
 
         }
