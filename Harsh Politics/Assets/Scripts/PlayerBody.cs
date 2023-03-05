@@ -1,7 +1,6 @@
 using System;
 using Entities;
 using PlayerAttachment;
-using SupportFiles;
 using UnityEngine;
 
 namespace DefaultNamespace
@@ -18,8 +17,9 @@ namespace DefaultNamespace
         {
             
             //Creates a hand from prefab and attach it to player as child
-            Instantiate(Resources.Load("Default/A_Hand") as GameObject, transform);
-            
+            var hand = Instantiate(Resources.Load("Default/A_Hand") as GameObject, transform);
+            hand.layer = gameObject.layer;
+
             _health.SetHealth();
             _health.LifeConsumed += Destroybody;
         }
@@ -34,6 +34,7 @@ namespace DefaultNamespace
             Destroy(gameObject);
         }
 
+        //Check weapon also over layer because collider box overlapping 
         private void OnCollisionEnter2D(Collision2D col)
         {
             if (col.relativeVelocity.magnitude > 40 &&

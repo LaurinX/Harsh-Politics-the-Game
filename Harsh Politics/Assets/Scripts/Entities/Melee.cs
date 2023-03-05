@@ -1,3 +1,5 @@
+using System;
+using PlayerAttachment;
 using UnityEngine;
 
 namespace Entities
@@ -6,8 +8,13 @@ namespace Entities
     {
         private float holdTime;
         public Animator anim;
-        
+        private Collider2D _collider;
 
+        private void Start()
+        {
+            _collider = gameObject.GetComponent<Collider2D>();
+        }
+		
         private void Update()
         {
             if (CheckIfMasterExists() == false) {
@@ -27,7 +34,6 @@ namespace Entities
                 holdTime = 0;
             }
         }
-
         public override void Attack()
         {
             if (!StrikeMode)
@@ -36,16 +42,16 @@ namespace Entities
                 gameObject.GetComponent<Collider2D>().isTrigger = false;
                 anim.SetTrigger("attack");
 
+                _collider.isTrigger = false;
             }
         }
-
         protected override void Animation()
         {
             if (holdTime >= 0.1f)
             {
                 StrikeMode = false;
-                gameObject.GetComponent<Collider2D>().isTrigger = true;
-                
+                gameObject.GetComponent<Collider2D>().isTrigger = true;     
+                _collider.isTrigger = true;
             }
 
         }

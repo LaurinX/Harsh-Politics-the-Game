@@ -1,5 +1,4 @@
 using System;
-using DefaultNamespace.InspectorSettings;
 using UnityEngine;
 
 namespace PlayerAttachment
@@ -7,7 +6,6 @@ namespace PlayerAttachment
     [Serializable]
     public class Armor : GUI
     {
-        [ReadOnly]
         [SerializeField]
         private int _protectionLevel;
         
