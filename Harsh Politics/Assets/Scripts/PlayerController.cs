@@ -1,55 +1,56 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float moveSpeed;
-    public float jumpForce;
-    public KeyCode left;
-    public KeyCode right;
-    public KeyCode jump;
-    public KeyCode throwBall;
-
+    private PlayerControls _controls;
+    
     private Rigidbody2D theRB;
 
+    
+    private Animator _animator;
+    private SpriteRenderer _spriteRenderer;
+    
     public Transform groundCheckPoint;
     public float groundCheckRadius;
-    public LayerMask whatIsGround;
-
     public bool isGrounded;
 
-    private Animator anim;
-   
     // Start is called before the first frame update
     void Start()
     {
-        theRB = GetComponent<Rigidbody2D>();
+        _controls = GetComponentInParent<PlayerControls>();
+        
+        theRB = GetComponentInParent<Rigidbody2D>();
 
-        anim = GetComponent<Animator>();
+        _animator = GetComponent<Animator>();
+        
+        _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, groundCheckRadius, whatIsGround);
+        isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, groundCheckRadius, _controls.whatIsGround);
        
-        if (Input.GetKey(left)) 
+        if (Input.GetKey(_controls.left)) 
         {
-            theRB.velocity = new Vector2(-moveSpeed, theRB.velocity.y);
-        }else if (Input.GetKey(right))
+            theRB.velocity = new Vector2(-_controls.moveSpeed, theRB.velocity.y);
+            _spriteRenderer.flipX = true;
+        }else if (Input.GetKey(_controls.right))
         {
-            theRB.velocity = new Vector2(moveSpeed, theRB.velocity.y);
+            theRB.velocity = new Vector2(_controls.moveSpeed, theRB.velocity.y);
+            _spriteRenderer.flipX = false;
         } else
         {
             theRB.velocity = new Vector2(0, theRB.velocity.y);
         }
 
-        if (Input.GetKey(jump)&& isGrounded )
+        if (Input.GetKey(_controls.jump)&& isGrounded )
         {
-            theRB.velocity = new Vector2(theRB.velocity.x, jumpForce);
+            _animator.SetTrigger("JumpButtonClicked");
+            theRB.velocity = new Vector2(theRB.velocity.x, _controls.jumpForce);
         }
-        if(theRB.velocity.x < 0)
+
+        if (theRB.velocity.x < 0)
         {
             transform.localScale = new Vector3(-1,1,1);
         } else if ( theRB.velocity.x > 0)
@@ -57,7 +58,7 @@ public class PlayerController : MonoBehaviour
             transform.localScale = new Vector3(1, 1, 1);
         }
 
-        anim.SetBool("isGrounded",isGrounded);
+        _animator.SetBool("isGrounded",isGrounded);
       
     }
 }
