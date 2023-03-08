@@ -11,7 +11,7 @@ namespace DefaultNamespace
 
         public Armor _armor;
         
-        private float knockbackForce = 1500;
+        private float knockbackForce = 3000;
 
         private void Start()
         {

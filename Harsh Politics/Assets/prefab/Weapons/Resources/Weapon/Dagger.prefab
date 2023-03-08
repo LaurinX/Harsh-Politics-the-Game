@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  attackSpeed: 1
+  attackSpeed: 10
   anim: {fileID: 7340466465007050764}
 --- !u!212 &3231789022615201389
 SpriteRenderer:

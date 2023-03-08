@@ -50,13 +50,13 @@ namespace PlayerAttachment
         {
             if (left && _faceDirection == FaceDirection.Right)
             {
-                transform.localPosition = new Vector3(-transform.localPosition.x, 0, 0);
+                transform.localPosition = new Vector3(-transform.localPosition.x, (float)-0.5, 0);
                 transform.localRotation = new Quaternion(0f, 180f, 0f, 0f);
                 _faceDirection = FaceDirection.Left;
             }
             if (right && _faceDirection == FaceDirection.Left)
             {
-                transform.localPosition = new Vector3(-transform.localPosition.x, 0, 0);
+                transform.localPosition = new Vector3(-transform.localPosition.x, (float)-0.5, 0);
                 transform.localRotation = new Quaternion(0f, 0f, 0f, 0f);
                 _faceDirection = FaceDirection.Right;
             }
