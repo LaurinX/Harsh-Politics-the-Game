@@ -48,9 +48,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  attackSpeed: 2
+  attackSpeed: 0.5
   anim: {fileID: 5108330748958806572}
-  maxBulletNumber: 10
+  maxBulletNumber: 20
   currentBulletNumber: 0
 --- !u!212 &-5636321085617059806
 SpriteRenderer:
