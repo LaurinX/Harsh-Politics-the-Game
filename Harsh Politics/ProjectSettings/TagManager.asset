@@ -5,17 +5,18 @@ TagManager:
   serializedVersion: 2
   tags:
   - Weapon
+  - Bullet
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
   - Player1
   - Player2
-  - 
-  - 
+  - Weapon
+  - SpecialAttack
   - 
   - 
   - 

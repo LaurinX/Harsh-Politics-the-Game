@@ -93,8 +93,7 @@ namespace PlayerAttachment
         private void OnTriggerStay2D(Collider2D col)
         {
             if (Input.GetKey(_controls.interaction) &&
-                col.gameObject.tag == "Weapon" &&
-                col.gameObject.layer == 0 &&
+                col.gameObject is { tag: "Weapon", layer: 8 } &&
                 holdTime >= 0.5f)
             {
                 ChangeWeapon(col.transform);

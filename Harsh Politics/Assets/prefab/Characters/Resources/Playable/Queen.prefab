@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 589867777}
   m_Layer: 6
   m_Name: Queen
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -82,10 +82,6 @@ MonoBehaviour:
   groundCheckPoint: {fileID: 6211350008454152760}
   groundCheckRadius: 0.3
   isGrounded: 1
-  Bullet: {fileID: 1872186309814137976, guid: fbd6e3c2e7ef3454488befe1210e6543, type: 3}
-  throwPoint: {fileID: 6211350007475694240}
-  bulletCooldownBase: 200
-  bulletCooldown: 0
 --- !u!212 &6211350008142452879
 SpriteRenderer:
   m_ObjectHideFlags: 0

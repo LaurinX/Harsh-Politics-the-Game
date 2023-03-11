@@ -37,6 +37,7 @@ namespace DefaultNamespace
         //Check weapon also over layer because collider box overlapping 
         private void OnCollisionEnter2D(Collision2D col)
         {
+ 
             if (col.relativeVelocity.magnitude > 40 &&
                 col.gameObject.GetComponent<Weapon>())
             {
@@ -53,6 +54,11 @@ namespace DefaultNamespace
 
         private void OnTriggerEnter2D(Collider2D col)
         {
+            if (col.gameObject.TryGetComponent(out SpecialAbility ability))
+            {
+                KnockBack(ability.transform);
+                _health.DecreaseHealth(1);
+            }
             if (col.gameObject.TryGetComponent(out Weapon weapon))
             {
                 if (weapon.StrikeMode)
