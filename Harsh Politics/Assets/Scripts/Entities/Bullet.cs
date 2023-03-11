@@ -10,6 +10,9 @@ namespace Entities
         [SerializeField]
         private float bulletDecay = 5f;
 
+        [SerializeField]
+        private float bulletSpeed = 100;
+
         private int bulletDamage;
 
         private Rigidbody2D bulletBody;
@@ -30,11 +33,11 @@ namespace Entities
 
             if (_faceDirection == FaceDirection.Left)
             {
-                bulletBody.AddForce(Vector2.left*10,ForceMode2D.Force);
+                bulletBody.velocity = Vector2.left*bulletSpeed;
             }
             else
             {
-                bulletBody.AddForce(Vector2.right*10,ForceMode2D.Force);
+                bulletBody.velocity = Vector2.right*bulletSpeed;
             }
         }
         void bulletDestroy()
