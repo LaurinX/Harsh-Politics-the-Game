@@ -50,7 +50,7 @@ MonoBehaviour:
   damage: 1
   attackSpeed: 0.5
   anim: {fileID: 5108330748958806572}
-  maxBulletNumber: 20
+  maxBulletNumber: 15
   currentBulletNumber: 0
 --- !u!212 &-5636321085617059806
 SpriteRenderer:
