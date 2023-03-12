@@ -929,7 +929,7 @@ MonoBehaviour:
   interaction: 258
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 65
+    m_Bits: 73
 --- !u!4 &664975012
 Transform:
   m_ObjectHideFlags: 0
@@ -1273,7 +1273,7 @@ MonoBehaviour:
   interaction: 101
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 129
+    m_Bits: 137
 --- !u!4 &1228948434
 Transform:
   m_ObjectHideFlags: 0

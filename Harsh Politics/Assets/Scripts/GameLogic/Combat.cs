@@ -67,7 +67,7 @@ namespace GameLogic
         {
             var parent = GetComponentInParent<PlayerBody>().transform;
             var pathString = "SpecialAttacks/";
-            pathString += parent.GetComponentInChildren<PlayerController>().gameObject.name;
+            pathString += parent.GetComponentInChildren<PlayerController>().gameObject.GetComponent<SpriteRenderer>().sprite.name;
             pathString += "Special";
             _currentSpecialAttack = Instantiate(Resources.Load(pathString) as GameObject, transform);
             _specialAttackCalled = true;
