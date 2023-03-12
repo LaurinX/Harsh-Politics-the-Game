@@ -6,9 +6,12 @@ public class PlayerController : MonoBehaviour
     
     private Rigidbody2D theRB;
 
-    
+
     private Animator _animator;
     private SpriteRenderer _spriteRenderer;
+    public CharacterDb character;
+    public string playerPrefKeyString;
+    
     
     public Transform groundCheckPoint;
     public float groundCheckRadius;
@@ -24,6 +27,8 @@ public class PlayerController : MonoBehaviour
         _animator = GetComponent<Animator>();
         
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        _spriteRenderer.sprite = character.character[PlayerPrefs.GetInt(playerPrefKeyString)].characterSprite;
+        Debug.Log(PlayerPrefs.GetInt(playerPrefKeyString));
     }
 
     // Update is called once per frame
