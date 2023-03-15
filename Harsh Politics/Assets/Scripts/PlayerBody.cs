@@ -10,19 +10,22 @@ namespace DefaultNamespace
         public Health _health;
 
         public Armor _armor;
-        
+
         private float knockbackForce = 3000;
 
         private void Start()
         {
-            
+
             //Creates a hand from prefab and attach it to player as child
             var hand = Instantiate(Resources.Load("Default/A_Hand") as GameObject, transform);
             hand.layer = gameObject.layer;
 
             _health.SetHealth();
-            _health.LifeConsumed += Destroybody;
+            _health.SetLeben();
+            _health.LifeConsumed += LifeLost;//Destroybody;
         }
+
+    
 
         private void OnDestroy()
         {
@@ -32,6 +35,12 @@ namespace DefaultNamespace
         void Destroybody(object sender, EventArgs e)
         {
             Destroy(gameObject);
+        }
+        
+        void LifeLost(object sender, EventArgs e)
+        {
+            _health.DecreaseLeben();
+            _health.SetHealth();
         }
 
         //Check weapon also over layer because collider box overlapping 
