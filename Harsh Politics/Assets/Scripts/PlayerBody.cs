@@ -1,7 +1,9 @@
 using System;
+using System.Collections.Generic;
 using Entities;
 using PlayerAttachment;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace DefaultNamespace
 {
@@ -20,9 +22,22 @@ namespace DefaultNamespace
             var hand = Instantiate(Resources.Load("Default/A_Hand") as GameObject, transform);
             hand.layer = gameObject.layer;
 
+            var leben = Instantiate(Resources.Load("Leben/Health") as GameObject, transform);
+            
+            _health.SetSlider(leben.GetComponentInChildren<Slider>());
+            
             _health.SetHealth();
-            _health.SetLeben();
-            _health.LifeConsumed += LifeLost;//Destroybody;
+            
+            var herzen = new List<GameObject>();
+            
+            herzen.Add(leben.transform.GetChild(0).Find("1").gameObject);
+            herzen.Add(leben.transform.GetChild(0).Find("2").gameObject);
+            herzen.Add(leben.transform.GetChild(0).Find("3").gameObject);
+            
+            _health.SetLeben(herzen.ToArray());
+            
+            _health.HealthConsumed += HealthLost;
+            _health.LifeConsumed += Destroybody;
         }
 
     
@@ -30,6 +45,7 @@ namespace DefaultNamespace
         private void OnDestroy()
         {
             _health.LifeConsumed -= Destroybody;
+            _health.HealthConsumed -= HealthLost;
         }
 
         void Destroybody(object sender, EventArgs e)
@@ -37,9 +53,10 @@ namespace DefaultNamespace
             Destroy(gameObject);
         }
         
-        void LifeLost(object sender, EventArgs e)
+        void HealthLost(object sender, EventArgs e)
         {
             _health.DecreaseLeben();
+            //Reset HealthBar
             _health.SetHealth();
         }
 

@@ -621,7 +621,7 @@ GameObject:
   - component: {fileID: 585417902}
   - component: {fileID: 585417901}
   - component: {fileID: 585417900}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ground (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1290,6 +1290,8 @@ MonoBehaviour:
   _health:
     _maxHealth: 2000000000
     _health: 0
+    _maxLeben: 0
+    _leben: 0
   _armor:
     _protectionLevel: 0
 --- !u!50 &1275118007
@@ -1492,6 +1494,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1275118010}
     m_Modifications:
+    - target: {fileID: 5232285553374611522, guid: 0f11de45f33ba5c41887034d9e540974, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: bfc22b0248bf6184693e86bcff60e5f3, type: 3}
     - target: {fileID: 6211350008142452872, guid: 0f11de45f33ba5c41887034d9e540974, type: 3}
       propertyPath: m_Name
       value: Trump
@@ -1834,8 +1840,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health:
-    _maxHealth: 2000000
+    _maxHealth: 20
     _health: 0
+    _maxLeben: 3
+    _leben: 0
   _armor:
     _protectionLevel: 0
 --- !u!50 &1519956049
