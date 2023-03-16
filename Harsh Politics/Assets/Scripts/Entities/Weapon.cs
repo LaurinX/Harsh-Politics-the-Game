@@ -15,7 +15,7 @@ namespace Entities
 
         private Collider2D _collider;
         
-        public bool StrikeMode { get; set; } = false;
+        public bool StrikeMode { get; protected set; } = false;
         
         public int GetDamageValue()
         {

@@ -6,7 +6,8 @@ namespace Entities
 {
     public class Melee : Weapon
     {
-        private float holdTime;
+        private float animationTime;
+        
         public Animator anim;
         private Collider2D _collider;
 
@@ -26,12 +27,12 @@ namespace Entities
             }
             if (StrikeMode)
             {
-                holdTime += 1 * Time.deltaTime;
+                animationTime += 1f * Time.deltaTime;
                 Animation();
             }
             else
             {
-                holdTime = 0;
+                animationTime = 0;
             }
         }
         public override void Attack()
@@ -39,7 +40,6 @@ namespace Entities
             if (!StrikeMode)
             {
                 StrikeMode = true;
-                gameObject.GetComponent<Collider2D>().isTrigger = false;
                 anim.SetTrigger("attack");
 
                 _collider.isTrigger = false;
@@ -47,10 +47,9 @@ namespace Entities
         }
         protected override void Animation()
         {
-            if (holdTime >= 0.1f)
+            if (animationTime >= 0.1f)
             {
                 StrikeMode = false;
-                gameObject.GetComponent<Collider2D>().isTrigger = true;     
                 _collider.isTrigger = true;
             }
 

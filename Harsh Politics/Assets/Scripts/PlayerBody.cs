@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Entities;
 using PlayerAttachment;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,8 +16,11 @@ namespace DefaultNamespace
 
         private float knockbackForce = 3000;
 
+        private Rigidbody2D _rigidbody;
+
         private void Start()
         {
+            _rigidbody = GetComponentInParent<Rigidbody2D>();
 
             //Creates a hand from prefab and attach it to player as child
             var hand = Instantiate(Resources.Load("Default/A_Hand") as GameObject, transform);
@@ -77,14 +81,29 @@ namespace DefaultNamespace
                 _health.DecreaseHealth(bullet.BulletDamage());
             }
         }
-
+        
+        //Trigger interaction with box collider setTrigger = true;
         private void OnTriggerEnter2D(Collider2D col)
         {
             if (col.gameObject.TryGetComponent(out SpecialAbility ability))
             {
                 KnockBack(ability.transform);
-                _health.DecreaseHealth(1);
+                _health.DecreaseHealth(3);
             }
+                        
+            if (col.gameObject.TryGetComponent(out Weapon weapon))
+            {
+                if (weapon.StrikeMode)
+                {
+                    KnockBack(weapon.transform);
+                    
+                    _health.DecreaseHealth(col.gameObject.GetComponent<Weapon>().GetDamageValue());
+                }
+            }
+        }
+
+        private void OnTriggerStay2D(Collider2D col)
+        {
             if (col.gameObject.TryGetComponent(out Weapon weapon))
             {
                 if (weapon.StrikeMode)
@@ -100,7 +119,7 @@ namespace DefaultNamespace
         {
             Vector2 difference = (transform.position - col.position).normalized;
             Vector2 force = difference * knockbackForce;
-            gameObject.GetComponent<Rigidbody2D>().AddForce(force, ForceMode2D.Force); 
+            _rigidbody.AddForce(force, ForceMode2D.Force); 
         }
     }
 }
