@@ -1,4 +1,4 @@
-##Quellen nach APA
+## Quellen nach APA
 
 - Booch, G. (2018). The History of Software Engineering. IEEE Software, 35(5), 108–114. https://doi.org/10.1109/ms.2018.3571234
 - DRY vs KISS – Clean Code Prinzipien. (2018, 25. Mai). genericde. Abgerufen am 20. März 2023, von https://www.generic.de/blog/dry-vs-kiss-clean-code-prinzipien
