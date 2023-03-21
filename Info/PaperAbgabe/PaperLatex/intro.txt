@@ -4,7 +4,7 @@ zusammengefasst. Laut Booch wurde der Begriff erstmals 1963/64 von Magaret Hamil
 erwähnt. Als damalige Lead-Developerin in Skylab und Apollo wollte sie ihre Arbeit von
 "Hardware Engineers“ unterscheiden. In den 1960er soll es drei große Faktoren gegeben
 haben, die die Softwareentwicklung beeinflussten, und zwar die Kommerzialisierung von
-Software als Produkt, die Entwicklung des SAGE-Verteidigungssystems und das USRaumprogramm und die daraus resultierenden überlebenswichtigen Softwaressyteme.
+Software als Produkt, die Entwicklung des SAGE-Verteidigungssystems und das US-Raumprogramm und die daraus resultierenden überlebenswichtigen Softwaressyteme.
 Zwischen den 60er und 80er wurden die Konzepte wie Modular Programming, Wasserfall
 Modell und Entity-Relationship-Modell für die Softwareentwicklung entwickelt. In den 80er
 und 90er veränderten sich die Ansprüche auf Softwaresysteme durch die zunehmende
