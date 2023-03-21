@@ -1,0 +1,57 @@
+Als relevante Stakeholder haben wir zum einen Maria, als eine Art Kundin oder Auftraggeberin identifiziert. 
+Zum anderen, die späteren Nutzer, also die Spieler und außerdem unser Team, als Entwickler. 
+Als wichtigste Projektziele wurden folgende Anforderungen ermittelt:
+\begin{itemize}
+\item	Das wichtigste Projektziel ist die Lauffähigkeit des Programms. Hauptquelle dieser Anforderung 
+ist Maria als Stakeholderin. Das Ziel ist insofern von großer Relevanz, als dass es ihre einzige Anforderung ist. 
+Sie nicht umzusetzen wäre also fatal.
+\item	Als weiteres allgemeines Projektziel haben wir Entwickler uns nahezu von Beginn an auf die Anforderung 
+geeinigt, dass es bei Programm um ein zweidimensionales Spiel, im eins gegen eins Modus handeln soll.
+\end{itemize}
+Sowohl funktionale als auch nicht-funktionale Anforderungen wurden gemeinsam als Team ermittelt, 
+indem jedes Mitglied mithilfe von Brainstorming seine speziellen Wünsche ins Spiel einbrachte. 
+Außerdem wurde sich in die späteren Nutzer hineinversetzt und aus ihrer Perspektive wurde überlegt, 
+was für das Programm wichtig sein könnte. Die Anforderungen entstanden nicht alle zu beginn, stattdessen 
+kamen beispielsweise auch noch während des Entwicklungsprozesses weitere dazu. Darüber hinaus brachte 
+auch das ermitteln möglicher Risiken, einige neue Anforderungen ein.
+
+\subsection{Nicht-Funktionale Anforderungen}
+\begin{itemize}
+\item	Auswahl verschiedener Charaktere:
+Die Spieler sollen die Möglichkeit haben, das Aussehen und Können, also die Fähigkeiten, ihrer Figuren zu ändern, also aus verschiedenen Charakteren zu wählen.	
+\item	Mapauswahl:
+Neben der Auswahl verschiedener Charaktere soll Spieler auch Möglichkeit haben zwischen verschiedenen Maps zu wählen, also verschiedenen Spielfeldern.
+\item	dynamische Animationen und Darstellungen:
+Verschiedene Darstellungen und Animationen sollen das Spiel dynamischer und interessanter machen. Beispiele dafür Sprung- oder Angriffsanimationen oder auch die 
+Spiegelung der Charaktere je nach Richtung in die sie laufen. 
+\item	Skalierbarkeit:
+Als weitere Anforderung wurde die Skalierbarkeit der Anwendung gewünscht. Sie soll in eine gewünschte Größe gezogen oder an die Größe verschiedener Bildschirme 
+angepasst werden können.
+\item	Zuverlässigkeit:
+Die Anwendung muss zuverlässig funktionieren, soll möglichst flüssig laufen und nicht abstürzen.
+\item	Benutzerfreundlichkeit:
+Der Nutzer sollte sich schnell und einfach im Programm zurechtfinden können. Dafür muss die Steuerung möglichst selbsterklärend und leicht verständlich sein, 
+um ein optimales Spielerlebnis zu gewährleisten.
+\end{itemize}
+
+\subsection{Funktionale Anforderungen} 
+\begin{itemize}
+\item	Steuerbarkeit der Figuren:
+Damit die Figur sich nach Anweisung des Spielers bewegen kann, muss eine Eingabe auf der Tastatur möglich sein. Die Eingabe muss vom Programm ausgewertet und 
+umgesetzt werden können.
+\item	zwei Spieler, mit getrennter Steuerung:
+Um das Projektziel des 1v1 Spiels umzusetzen, muss es zwei getrennte Figuren geben. Damit zwei Spieler gegeneinander spielen können, müssen die Steuerungen 
+der Figuren verschieden sein.
+\item	Figuren können springen:
+Der Spieler soll die Möglichkeit haben, seine Figur springen zulassen. 
+\item	Angriffe auf den Gegenspieler:
+Da zwei Spieler gegeneinander spielen sollen, müssen Angriffe der eigenen Figur gegen die Figur des Genengers möglich sein.
+\item	Spezialangriffe/-fähigkeiten: 
+Neben den normalen Angriffen sollen Spezialangriffe oder Fähigkeiten möglich sein, die je nach ausgewähltem Charakter unterschiedlich sind.
+\item	gegnerische Angriffe abwehren:
+Um den Angriffen des Genengers nicht hilflos ausgeliefert zu sein, sollen die Spieler sich gegen die Angriffe verteidigen können.
+\item	Menü für Einstellungen:
+Als weitere Anforderung wünschten sich die Entwickler ein Menü, indem über Buttons verschiedene Einstellungen vorgenommen werden können. Darunter zählen 
+neben der bereits erwähnten Map- und Charakterauswahl, beispielsweise auch das Ein- oder Ausschalten der Sounds.	
+\end{itemize}
+Die hier genannten Anforderungen sind ein Auszug aus den im Projekt ermittelten Anforderung. Sie wurden von der Gruppe als am wichtigsten identifiziert.

@@ -1,0 +1,27 @@
+In diesem Paper wurde die Methodik und das Vorgehen für das beschriebene Projekt ausführlich dargelegt und veranschaulicht. 
+Die Zusammenarbeit im Team und die eigene Konzeptionierung, halfen den Studierenden dabei, die Erfahrungen aus dem vorherigen 
+Semester im Bereich Softwareengineering zu vertiefen und bot zugleich einen Ausblick darauf, wie Softwareprojekte im späteren Berufsleben ablaufen könnten. 
+
+Während der Projektarbeit mussten die Studierenden lernen, ihre eigenen Ansichten und Gedanken, anderen Teammitgliedern 
+gegenüber zu verteidigen und Kompromisse zu finden, um das Vorhaben voranzubringen. Zudem mussten sie, aufbauend auf dem Modul "Softwareengineering 1“, 
+verschiedene Phasen der Softwareentwicklung durchlaufen und selbstständig Lösungen für Probleme finden. Sie erhielten vertiefte Einblicke in die Modellierung von 
+Klassen- und Sequenzdiagrammen in der Unified-Modeling-Language (UML) und lernten, wie man ein Produkt mittels Projekt-Teasern anschaulich gegenüber eventuellen Kunden vorstellt. 
+
+Jedem Gruppenmitglied wurden feste Aufgabengebiete zugeteilt, wie beispielsweise die grafische oder die technische Umsetzung, unter Berücksichtigung 
+der jeweiligen Stärken und Interessen. Dadurch sollte die Arbeit am Projekt einerseits asynchron und andererseits möglichst effizient stattfinden. 
+Die grundsätzliche Projektplanung wurde gemeinsam als Gruppe durchgeführt und aufgetretene Probleme wurden schnell angesprochen und als Team gelöst. 
+Meinungsverschiedenheiten wurden ebenfalls in der Gruppe diskutiert, um diese möglichst schnell zu beseitigen. 
+
+Zusammenfassend lässt sich sagen, dass das Projekt einen großen Mehrwert für die Studierenden und eine Vorbereitung auf den zukünftigen Arbeitsalltag mit sich brachte. 
+
+
+
+Die Unterteilung des Projektes in einzelne Phasen stellte sich im Nachhinein als sehr hilfreich heraus, da somit das gesetzte Ziel eines lauffähigen 
+Prototyps relativ früh im Entwicklungsprozess erreichbar war. Zwar enthielt dieser Prototyp zunächst nur grundlegende Funktionen, wie die Steuerung oder Sprünge, 
+jedoch war dies ein erster Meilenstein, der die nächste Projektphase einleitete. Schritt für Schritt wurden so weitere Funktionen implementiert, die schlussendlich zum fertigen Produkt weiterentwickelt wurden.  
+
+Die Entwicklungsumgebung der Unity-Engine, die essenziell für die Entwicklung des Spiels war, generierte zu Beginn des Projekts einige Probleme, 
+da es ein gänzlich neues Tool war, in das sich erst eingearbeitet werden musste. Mit der Zeit wuchs jedoch das Verständnis für die Materie und es wurden 
+erste Testkonfigurationen an vorgefertigten Beispiel-Projekten durchgeführt. Schließlich wurde das angeeignete Wissen gesammelt und Verständnislücken innerhalb der Gruppe geschlossen. 
+
+Umfassende Gespräche halfen dabei, Dinge besser zu verstehen und trugen zur Projektplanung bei. Wöchentliche Meetings brachten neue Meilensteine hervor, die gesetzt und schließlich durch neue Ziele ersetzt wurden. 
