@@ -1,46 +1,38 @@
-\subsection{Kampsystem}
-Das Kampfsystem funktioniert aufgrund eines Lebenssystems. Jeder Spieler hat eine
-bestimmte Anzahl an Leben, die aufgebraucht werden müssen, damit er besiegt ist. Um diese Leben
-auf 0 zu reduzieren, stehen jedem Spieler verschiedene Waffen zur Verfügung. Dabei handelt es sich
-zum Beispiel um Schwert und Schild, aber auch um eine Pistole die wirksam auf größere Reichweite
-ist. Zusätzlich zu diesen Waffen hat jeder Spieler abhängig von seinem gewählten Charakter zugriff
-auf verschiedene Spezialfähigkeiten, die er nach Ablauf eines Cooldowns aktivieren kann.
+Das Ziel des Spieles ist es dem Gegnerischen Charakter die Lebenspunkte auf Null zu Reduzieren und ihn damit zu besiegen. Um dem Gegner
+Schaden hinzuzufügen, stehen jedem Charakter verschiedene Waffen zur Verfügung. Dabei handelt es sich
+um die Nahkampfwaffen Schwert, Schild und Dolch und eine Pistole, die für den Fernkampf dient.
+ist. Zusätzlich zu diesen Waffen kann jeder Spieler abhängig von seinem gewählten Charakter eine Spezialattacke benutzen.
 \subsection{Movementsystem}
-Um die Spieler in der Szene zu bewegen greifen wir per Skript auf eine vordefinierte Funktion von
-Unity zu, die mithilfe einer geschwindigkeitsvariable und vordefinierten Inputs bezüglich der Richtung
-die Spielfigur mir der festgelegten Geschwindigkeit in die gewünschte Richtung bewegt. Das Springen
-funktioniert ähnlich. Statt einer horizontalen Koordinaten Änderung gibt es hier eine vertikale. Um
-die Schwerkraft kümmert sich Unity wieder selbst, da jedes Objekt welches eine Komponente
-namens Rigidbody2D besitzt auch der Physik Engine unterliegt. Wie hoch die Spielfigur bei einem
-Input springt wird wieder durch eine zusätzliche variable entschieden, die man hier jedoch als
-Sprungkraft bezeichnet. Um sicherzustellen, dass kein spiel Objekt durch den festgelegten Boden fällt
-wird eine Funktion angewandt die mithilfe eines körperlosen Punkts unter dem Objekt feststellt ob
-diese sich auf einem festgelegten Boden befindet oder nicht. 
+Als Entwicklungsumgebung wurde die Unity Engine gewählt, da diese neben einer Grafischen Oberfläche, 
+welche sich leicht an die Anforderungen anpassen lässt und über ein Koordinatensystem verfügt, auch über Funktionen und Komponenten verfügt, 
+welche auf das Programmieren von Spielen ausgelegt sind.
+So wird bei die Steuerung der Charaktere eine solche Funktion verwendet, die mit einer Geschwindigkeitsvariable
+die Bewegung der Charaktere ermöglicht. Dabei wird mit Hilfe dieser Variable die Koordinatenänderung der Charaktere berrechnet.
+Indem man einem Spielobjekt die Unity Komponente Rigidbody2D zuweist, erhält das Objekt in dem Spiel einen Körper. 
+Das bedeutet, dass das Objekt mit anderen Objekten die einen Körper haben Kollidieren kann, und einer Schwerkraft unterliegt.
+Besonders wichtig ist das um den Charakter springen zu lassen, da mit Hilfe dieser Schwerkraft automatisch die 
+Koordinatenänderungen auf der Y-Achse berechnet werden und der Charakter auf einem Boden stehenbleiben kann.
 \subsection{Animationen}
-In dem Spiel sind verschiedene Objekte animiert. Dabei handelt es sich um die Spielcharaktere selbst,
-sowie um ausgerüstete Waffen. Wichtig dabei ist, dass Waffen die z.B. auf dem Boden liegen keine
-Animation haben. jedes dieser animierten Objekte besitzt eine Idle Animation, also eine Animation
-solange sich das Objekt im Ruhezustand befindet. Sei es bei den Figuren wenn sie bewegungslos
-stehen, oder bei den Waffen wenn sie ohne anzugreifen in der Hand gehalten werden. Die
-Spielfiguren besitzen des Weiteren lauf-animationen und Sprung Animationen. Die
-Angriffsanimationen sind je nach ausgerüsteter Waffe unterschiedlich und werden deshalb in den
-Waffen ausgelöst. Übergänge zwischen diesen verschiedenen Arten von Animationen (Idle,
-Bewegung/ Idle, angriff) werden mit einer Trigger variable ausgelöst. Sobald eine bestimmte Trigger
-variable ausgelöst wird, z.B. durch Tastatur Eingabe, löst ein an das Objekt angehängter
-Animationscontroller die jeweils geforderte Animation aus.
+Ein wichtiger Punkt der Spiele lebendig wirken lässt sind die Animationen. In Harsh Politics sind diese Animationen 
+in der Bewegung der Charaktere zu finden. So sind sowohl Ruhezustand und Sprungzustand der Charaktere animiert, 
+als auch Ruhezustand und Angriffszustand der verschiedenen Waffen.
+Um ein Spielobjekt zu Animieren stellt Unity die Animator Komponente zur Verfügung, die als Manager für verschiedene Animationen dient. 
+In dem Animator kann man festlegen, wann eine Animation abgespielt werden soll und in welche Animation sie dannach übergehen soll.
 \subsection{Aufbau des Spielfelds}
-Nach Start des Spiels wählt jeder Spieler sich einen Charakter aus, den er spielen möchte. Um diese
-verschiedenen Charaktere in verschiedenen Szenen spielen zu lassen gibt uns Unity die Möglichkeit
-vorgefertigte Spielobjekte zu erstellen, welche man immer wieder in die vorhandene Szene kopieren
-kann. So ist es möglich Charaktere und Spielfelder mit vorgefertigten Funktionen, Fähigkeiten und
-Hindernissen immer wieder neu und in jeglicher Kombination aufzubauen.
+Das Spiel startet im Hauptmenü, in dem sich jeder Spieler einen Charakter aussuchen kann, und man sich auf ein Spielfeld einigt. 
+Dabei gibt es jeweils die Auswahl zwischen 6 Charakteren und 6 Szenen.
+Sobald die Auswahl abgeschlossen ist wird das Spielfeld gebaut. Es wird der Hintergrund festgelegt, 
+Hindernisse und Böden hinzugefügt, und die Spielcharaktere an ihre Positionen gesetzt.
+Da es ein großer Aufwand wäre jeden dieser Schritte einzeln auszuführen, bietet Unity die Möglichkeit sogenannte Prefabs zu erstellen.
+Prefabs sind von den Entwicklern vorgefertigte Einstellung. Beim Bau eines Spielfeldes werden mehrere 
+solcher Prefabs benutzt um den Aufwand des Programmes zu minimieren. Zum einen sind die Einstellungen 
+für die einzelnen Szenen gespeichert, also die Positionen der Charaktere und Hindernisse und zum 
+Anderen sind die Einstellungen für die Charaktere gespeichter. Dazu zählen Sprite, Verhalten und Animationen.
+So ist es möglich Charaktere und Szenen in jeder möglichen Variation schnell und zuverlässig in das Spiel zu laden.
 \subsection{Waffen}
-Das System, um Waffen aufzuheben funktioniert in dem Spiel auf dem Prinzip einer Hand des
-Charakters. Die Hand ist in diesem fall ein körperloser Punkt, der auf eine bestimmte Position
-abhängig von dem Charakter gesetzt wird und als ankerpunkt für jegliche Items dient. Zu beginn des
-Spiels ist dieser hand-ankerpunkt von einem Objekt namens Hand belegt, welches als Platzhalter
-dient, aber auch für den Kampf benutzt werden kann. Wenn der Spieler mit dem Hand-ankerpunkt
-über einer Waffe steht und den Befehl fürs aufheben gibt, wird dieser Hand Platzhalter durch die
-jeweilige Waffe mit ihren Eigenschaften und Animationen ersetzt. Bei der Funktion die Waffe wieder
-wegzuwerfen, wird die Waffe dann wieder durch den Hand Platzhalter ersetzt. So sollte es dem
-Spieler unter normalen umständen unmöglich sein unbewaffnet oder mit leerer "Hand“ dazustehen.
+Eine wichtige Funktion des Spieles ist es, Waffen aufzuheben und wieder abzulegen. Dazu verfügt 
+jeder Charakter über ein Hand Objekt, welches den Punkt markiert, an welchem eine Waffe dargestellt wird, 
+sollte sie aufgehoben werden.
+Solange der Charakter keine Waffe hält wird an diesem Punkt eine Faust als Platzhalter dargestellt. 
+Diese Faust verfügt wie die Waffen über einen Angriff und passende Animationen.
+
