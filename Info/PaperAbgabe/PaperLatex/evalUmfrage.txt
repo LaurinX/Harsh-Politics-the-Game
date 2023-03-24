@@ -1,0 +1,37 @@
+\subsection{Projektprozess}
+Die in diesem Paper schon vielfach erwähnten Methoden, wie Scrum  und die agile Softwareentwicklung haben die Projektplanung und Projektumsetzung nicht geschädigt, sondern vielmehr die Kommunikation, die klare Aufgabenverteilung und das Zeitmanagement positiv beeinflusst. Dies ermöglichte die Umsetzung des Projektes in einer relativ kurzen Zeitspanne, obwohl die Projektverantwortlichen keinerlei Erfahrungen mitbrachten. Dies zeigt deutlich, dass die im Projekt eingesetzten Methoden, eine sehr große Rolle bei dem Projekterfolg spielten. 
+\subsection{Anforderung}
+Durch die Anforderungsanalyse konnten klar definierte Implementierungsziele gesetzt werden. Durch klar formulierte Anforderungen konnten die Systemarchitektur und das UML-Diagramm erstellt werden. Die Implementierungsziele konnten dadurch in diskrete Aufgabengebiete unterteilt werden, sodass in den wöchentlichen Sprints einzelne Aufgaben in einer angemessenen Zeit bewältigt werden konnten. 
+\subsection{Umsetzung}
+Von den im Kapitel 3 genannten Anforderungen konnte ein Großteil der Anforderungen umgesetzt werden. Die Steuerung der Spielfigur über die Pfeil- bzw. WASD-Tasten ist intuitiv, da diese Tastenbelegung ein Standard in der Branche darstellt. Das Abwehren von Angriffen konnte aus Zeitgründen nicht umgesetzt werden. Ein paar der umgesetzten Anforderungen zeigen jedoch Fehler auf. Beim Schlagen eines anderen Charakters mit einer Waffe wird die Schadensberechnung teilweise mehrfach durchgeführt. Die Ursache ist bekannt, konnte aber bisher nicht gelöst werden. Auch kann es dazu kommen, dass die Spielfiguren außerhalb des sichtbaren Bereiches des Spielfeldes gelangen können. Durch den stark begrenzten Zeitrahmen, konnten viele Code-Richtlinien nicht eingehalten werden, da dies mehrfaches Refactoring erfordert. Jedoch ist die KISS (KEEP IT SIMPLE AND STUPID) Richtlinie weitestgehend eingehalten worden. Deswegen konnten Fehler nicht im Vornherein ausgeschlossen werden, wie es z.B. bei Test-Driven-Development der Fall ist. 
+\subsection{Umfrage}
+Es wurde eine Umfrage vorbereitet und durchgeführt. Es nahmen insgesamt 9 Personen an der Umfrage teil, die vor der Bearbeitung der Umfrage das Spiel unterschiedlich lang testeten. Jeder Teilnehmer konnte die Umfrage geheim durchführen und wurde nicht von den Entwicklern während der Teilnahme beeinflusst. Die Umfrage ermöglicht den Entwicklern weitere Anforderungen zu erfassen und Fehler zu erkennen.
+Das Ergebnis der Umfrage ist überwiegend positiv ausgefallen. Im Folgenden werden die Aspekte der Umfrage hinsichtlich der Bedienfreundlichkeit, Wiedererkennung und die allgemeine Resonanz vorgestellt. Die Auswertung der einzelnen Fragen ist rein qualitativ.
+
+\includegraphics[scale= 0.64]{Steuerung.png}
+Die Steuerung wurde passend implementiert, da die meisten Tester  ein intuitives Verständnis für die Tastenbelegung und die daraus resultierende Spielweise hatten.
+
+\includegraphics[scale= 0.64]{Wiedererkennung.png}
+Alle Tester konnten die Spielfiguren erkennen. Das gewählte Design der Figuren war somit den Anforderungen entsprechenden und unterstützt den Erkennungswert des Spiels.
+
+\includegraphics[scale= 0.64]{Menu.png}
+
+\includegraphics[scale= 0.64]{WiederSpielen.png}
+Das Spiel fand hohen Anklang bei den Umfrageteilnehmern. Der Wiederspielwert wurde von den Entwicklern als hoch interpretiert. Dies ist vermutlich unter anderem auf die humoristischen Inhalte zurückzuführen, welche laut den Umfragen dem Zeitgeist angemessen sind.
+
+\includegraphics[scale= 0.64]{Zeitgeist.png}
+Es wurden auch Feature-Vorschläge gesammelt und Feedback zu den beliebtesten bestehenden Features. Vorgeschlagene Features waren unter Anderem eine Randomisierte Spielfigurenauswahl und Wünsche nach spezifischen Spielfiguren. Das Feedback zu den beliebtesten bestehenden Features und die oben dargestellten Umfragen, lassen darauf schließen, dass folgende Anforderung mit besonderem Erfolg von den Entwicklern umgesetzt worden sind:
+\begin{itemize}
+\item Auswahl verschiedener Spielfiguren.
+\item Verschiedene Spielszenen/Maps.
+\item Animationen und Darstellung
+\item Programmstabilität
+\end{itemize}
+Zudem wurden alle funktionale und nicht-funktionale Anforderung erfüllt, bis auf die Abwehr von gegnerischen Angriffen. Folgende Anforderungen konnten durch die Umfrage erfasst werden:
+\begin{itemize}
+\item Game-Over Event: 
+Wird bei der Niederlage eines Spielers ausgelöst und führt die Nutzer zurück zum Menü
+\item Einfaches Waffen aufheben:
+Das Aufheben einer Waffe wurde von den Testern als zu schwierig bewertet. Waffen sollten demnach einfacher aufzuheben sein.
+\item Zufällige Auswahl von Spielfiguren und Spielszenen
+\end{itemize}

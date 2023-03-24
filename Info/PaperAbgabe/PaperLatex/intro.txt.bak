@@ -4,7 +4,7 @@ zusammengefasst. Laut Booch wurde der Begriff erstmals 1963/64 von Magaret Hamil
 erwähnt. Als damalige Lead-Developerin in Skylab und Apollo wollte sie ihre Arbeit von
 "Hardware Engineers“ unterscheiden. In den 1960er soll es drei große Faktoren gegeben
 haben, die die Softwareentwicklung beeinflussten, und zwar die Kommerzialisierung von
-Software als Produkt, die Entwicklung des SAGE-Verteidigungssystems und das USRaumprogramm und die daraus resultierenden überlebenswichtigen Softwaressyteme.
+Software als Produkt, die Entwicklung des SAGE-Verteidigungssystems und das US-Raumprogramm und die daraus resultierenden überlebenswichtigen Softwaressyteme.
 Zwischen den 60er und 80er wurden die Konzepte wie Modular Programming, Wasserfall
 Modell und Entity-Relationship-Modell für die Softwareentwicklung entwickelt. In den 80er
 und 90er veränderten sich die Ansprüche auf Softwaresysteme durch die zunehmende
@@ -12,7 +12,8 @@ Globalisierung. Daher mussten neue Konzepte wie UML, Spiral Modell, OOP eingefü
 werden, um die wachsenden Anforderungen zu bewerkstelligen. Durch das Internet in den
 90er erhielt die Rolle der Software abermals eine neue Stellung. Der "Consumer“ hatte nun
 als neuer Stakeholder andere Ansprüche an die Software als Unternehmen. Zu dieser Zeit
-haben sich bereits Techniken der Softwareentwicklung etabliert, wie "ContinuousIntegration“ und iteratives Entwickeln. Hinzu kamen nun auch Design Pattern auf Architekturund Code-Ebene. Das Internet-of-Things gewann durch Smartphones an Bedeutung, sodass
+haben sich bereits Techniken der Softwareentwicklung etabliert, wie "ContinuousIntegration“ und iteratives Entwickeln. Hinzu kamen nun auch 
+Design Pattern auf Architekturund Code-Ebene. Das Internet-of-Things gewann durch Smartphones an Bedeutung, sodass
 monolitische Software durch Microservices, Webtechnologien und Cloud Computing ersetzt
 wurden. (Booch, 2018)
 Wie zu sehen ist, hat das Wort "Software Engineering“ eine lange Entwicklungsgeschichte. Sie

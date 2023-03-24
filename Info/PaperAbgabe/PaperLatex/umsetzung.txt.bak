@@ -1,0 +1,36 @@
+Als Entwicklungsumgebung wurde die Unity Engine gewählt, da diese neben einer Grafischen Oberfläche, 
+welche sich leicht an die Anforderungen anpassen lässt und über ein Koordinatensystem verfügt, auch über Funktionen und Komponenten verfügt, 
+welche auf das Programmieren von Spielen ausgelegt sind.
+Das Ziel des Spieles ist es die Lebenspunkte der gegnerischen Spielfigur auf Null zu Reduzieren und ihn somit zu besiegen. Um der generischen Spielfigur
+Schaden hinzuzufügen, stehen jedem Spieler verschiedene Waffen zur Verfügung, die zufällig und in regelmäßigen Intervallen dem Spiel dynamisch hinzugefügt werden. Dabei handelt es sich
+um die Nahkampfwaffen Schwert, Schild und Dolch und eine Pistole, die für den Fernkampf dient. Zusätzlich zu diesen Waffen kann jeder Spieler abhängig von der gewählten Spielfigur eine Spezialattacke benutzen.
+\subsection{Movementsystem}
+Es wird bei der Steuerung der Spielfiguren eine Funktion verwendet, die abhängig von einer Geschwindigkeitsvariable
+die Bewegung der Spielfiguren ermöglicht. Dabei wird mit Hilfe dieser Variable die Koordinatenänderung der Spielfiguren berrechnet.
+Indem man einem Spielobjekt die Unity Komponente Rigidbody2D zuweist, erhält das Objekt in dem Spiel einen "Körper". 
+Das bedeutet,dass das Objekt von der Physik-Engine von Unity beeinflusst werden kann, was die Kollision mit anderen Objekten ermöglicht und eine Schwerkraft simuliert.
+Dis ist besonders wichtig um die Spielfigur springen zu lassen, da mit Hilfe dieser Schwerkraft automatisch die 
+Koordinatenänderungen auf der Y-Achse berechnet werden und die Spielfigur auf einem Boden stehenbleiben kann.
+\subsection{Animationen}
+Ein wichtiger Punkt, der Spiele lebendig wirken lässt, sind die Animationen. In Harsh Politics sind diese Animationen 
+in der Bewegung der Spielfiguren zu finden. So sind sowohl Ruhezustand und Sprungzustand der Spielfiguren animiert, 
+als auch Ruhezustand und Angriffszustand der verschiedenen Waffen.
+Um ein Spielobjekt zu Animieren stellt Unity die Animator Komponente zur Verfügung, die als Manager für verschiedene Animationen dient. 
+In dem Animator kann man festlegen, wann eine Animation abgespielt werden soll und in welche Animation sie dannach übergehen soll.
+\subsection{Aufbau des Spielfelds}
+Das Spiel startet im Hauptmenü, in dem sich jeder Spieler eine Spielfigur aussuchen kann, und man sich auf ein Spielfeld einigt. 
+Dabei gibt es jeweils die Auswahl zwischen 6 Spielfiguren und 6 Szenen.
+Sobald die Auswahl abgeschlossen ist wird das Spielfeld gebaut. Es wird der Hintergrund festgelegt, 
+Hindernisse und Böden hinzugefügt, und die Spielfiguren an ihre Positionen gesetzt.
+Da es ein großer Aufwand wäre jeden dieser Schritte einzeln auszuführen, bietet Unity die Möglichkeit sogenannte Prefabs zu erstellen.
+Prefabs sind von den Entwicklern vorgefertigte Einstellung. Beim Bau eines Spielfeldes werden mehrere 
+solcher Prefabs benutzt um den Aufwand des Programmes zu minimieren. Zum einen sind die Einstellungen 
+für die einzelnen Szenen gespeichert, also die Positionen der Spielfiguren und Hindernisse und zum 
+Anderen sind die Einstellungen für die Spielfiguren gespeichter. Dazu zählen Sprite, Verhalten und Animationen.
+So ist es möglich Spielfiguren und Szenen in jeder möglichen Variation schnell und zuverlässig in das Spiel zu laden.
+\subsection{Waffen}
+Eine wichtige Funktion des Spieles ist es, Waffen aufzuheben und wieder abzulegen. Dazu verfügt 
+jede Spielfigur über ein Hand Objekt, welches den Punkt markiert, an welchem eine Waffe dargestellt wird, 
+sollte sie aufgehoben werden.
+Solange die Spielfigur keine Waffe hält wird an diesem Punkt eine Faust als Platzhalter dargestellt. 
+Diese Faust verfügt wie die Waffen über einen Angriff und passende Animationen.
